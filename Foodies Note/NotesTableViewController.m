@@ -24,11 +24,23 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //data source load
+    /*
     NSError * err = nil;
     NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
     NSURL *file = [docs URLByAppendingPathComponent:@"notes.plist"];
     NSData *data = [[NSData alloc] initWithContentsOfURL:file];
     self.notes = (NSMutableArray *) [NSKeyedUnarchiver unarchiveObjectWithData:data];
+     */
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    NSError * err = nil;
+    NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
+    NSURL *file = [docs URLByAppendingPathComponent:@"notes.plist"];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:file];
+    self.notes = (NSMutableArray *) [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
