@@ -17,6 +17,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    // Set the application defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
+                                                            forKey:@"notes"];
+    
+    [defaults registerDefaults:appDefaults];
+    [defaults synchronize];
+    
     // Override point for customization after application launch.
     [FBLoginView class];
     [FBProfilePictureView class];

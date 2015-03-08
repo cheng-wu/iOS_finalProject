@@ -36,38 +36,24 @@
 
 
 - (IBAction)saveNote:(id)sender {
-    /*
-    NSString *test = self.Text.text;
-    NSLog(@"test=%@",test);
+    NSError * err = nil;
+    NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
+    NSURL *file = [docs URLByAppendingPathComponent:@"notes.plist"];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:file];
+    NSArray * notesArray = (NSArray *) [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSMutableArray * tmp = nil;
+    if (notesArray) {
+        tmp = [[NSMutableArray alloc] initWithArray:notesArray];
+    } else {
+        tmp = [[NSMutableArray alloc] init];
+    }
     
-    [super viewDidLoad];
-    //读取plist
+    Note * note = [[Note alloc] init];
+    note.title = @"test111";
     
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"NoteList" ofType:@"plist"];
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    NSLog(@"%@", data);
+    [tmp addObject:note];
     
-    //添加一项内容
-    //[data setObject:@"add some content" forKey:@"A"];
-    */
-    //获取应用程序沙盒的Documents目录
-    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    //获取完整路径
-    //NSString *documentsDirectory = [paths objectAtIndex:0];
-    //NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"NoteList1.plist"];
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)       objectAtIndex:0]stringByAppendingPathComponent:@"NoteList.plist"];
-    NSMutableDictionary *data = [[[NSMutableDictionary alloc] initWithContentsOfFile:plistPath]mutableCopy];
-    NSLog(@"111111%@", data);
-    NSMutableDictionary *info = [data objectForKey:@"初一班"];
-    
-    NSString *name1 = [info objectForKey:@"name1"];
-    
-    name1 = @"山山";
-    
-    [info setValue:name1 forKey:@"name1"];
-    [data setValue:info forKey:@"初一班"];
-    [data writeToFile:plistPath atomically:YES];
-    
-    NSLog(@"222222%@", data);
+    NSData * notes = [NSKeyedArchiver archivedDataWithRootObject:tmp];
+    [notes writeToURL:file atomically:NO];
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Note.h"
 
 @interface WriteNoteViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextView *Text;

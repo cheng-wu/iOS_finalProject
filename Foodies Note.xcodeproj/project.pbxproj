@@ -40,8 +40,10 @@
 		8418810F1AA40A46007ABB34 /* YELPAPISample.m in Sources */ = {isa = PBXBuildFile; fileRef = 841880FC1AA40A46007ABB34 /* YELPAPISample.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		841881121AA4101D007ABB34 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841881111AA4101D007ABB34 /* AsyncImageView.m */; };
 		841881151AA4102C007ABB34 /* YelpListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 841881141AA4102C007ABB34 /* YelpListing.m */; };
+		84952A761AACF898001B17CF /* NotesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84952A751AACF898001B17CF /* NotesTableViewController.m */; };
 		84A1EA481AABA09E006DDF56 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1EA471AABA09E006DDF56 /* LoginViewController.m */; };
 		84A1EA5F1AABB631006DDF56 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1EA5E1AABB631006DDF56 /* FacebookSDK.framework */; };
+		84A400091AACF2EE008D72C3 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A400081AACF2EE008D72C3 /* Note.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,9 +124,13 @@
 		841881111AA4101D007ABB34 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		841881131AA4102C007ABB34 /* YelpListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpListing.h; sourceTree = "<group>"; };
 		841881141AA4102C007ABB34 /* YelpListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpListing.m; sourceTree = "<group>"; };
+		84952A741AACF898001B17CF /* NotesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesTableViewController.h; sourceTree = "<group>"; };
+		84952A751AACF898001B17CF /* NotesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesTableViewController.m; sourceTree = "<group>"; };
 		84A1EA461AABA09E006DDF56 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		84A1EA471AABA09E006DDF56 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		84A1EA5E1AABB631006DDF56 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		84A400071AACF2EE008D72C3 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		84A400081AACF2EE008D72C3 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +196,10 @@
 				84A1EA471AABA09E006DDF56 /* LoginViewController.m */,
 				3C7097711AABDD0F005222AD /* WriteNoteViewController.h */,
 				3C7097721AABDD0F005222AD /* WriteNoteViewController.m */,
+				84A400071AACF2EE008D72C3 /* Note.h */,
+				84A400081AACF2EE008D72C3 /* Note.m */,
+				84952A741AACF898001B17CF /* NotesTableViewController.h */,
+				84952A751AACF898001B17CF /* NotesTableViewController.m */,
 			);
 			path = "Foodies Note";
 			sourceTree = "<group>";
@@ -410,10 +420,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A400091AACF2EE008D72C3 /* Note.m in Sources */,
 				84A1EA481AABA09E006DDF56 /* LoginViewController.m in Sources */,
 				841881081AA40A46007ABB34 /* OAMutableURLRequest.m in Sources */,
 				3C7097731AABDD0F005222AD /* WriteNoteViewController.m in Sources */,
 				8418810D1AA40A46007ABB34 /* OAToken.m in Sources */,
+				84952A761AACF898001B17CF /* NotesTableViewController.m in Sources */,
 				841881031AA40A46007ABB34 /* sha1.c in Sources */,
 				841881091AA40A46007ABB34 /* OAPlaintextSignatureProvider.m in Sources */,
 				841881021AA40A46007ABB34 /* hmac.c in Sources */,
