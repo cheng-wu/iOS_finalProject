@@ -129,6 +129,49 @@
             </objects>
             <point key="canvasLocation" x="1576" y="-318"/>
         </scene>
+        <!--Write Note View Controller-->
+        <scene sceneID="cIb-nl-9Hw">
+            <objects>
+                <viewController storyboardIdentifier="NotoDetailView" id="KZN-ME-aEI" customClass="WriteNoteViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NbH-tX-Yun"/>
+                        <viewControllerLayoutGuide type="bottom" id="fBr-Vn-8V9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kx4-S0-y6S">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="123456789" translatesAutoresizingMaskIntoConstraints="NO" id="BZ3-1R-hXz">
+                                <rect key="frame" x="0.0" y="64" width="600" height="213"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BZ3-1R-hXz" firstAttribute="top" secondItem="NbH-tX-Yun" secondAttribute="bottom" id="KQY-R9-aWR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BZ3-1R-hXz" secondAttribute="trailing" id="Ogx-Uc-COT"/>
+                            <constraint firstItem="BZ3-1R-hXz" firstAttribute="leading" secondItem="Kx4-S0-y6S" secondAttribute="leadingMargin" id="ffw-nq-x9E"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="HZ3-G9-TbY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="FSn-kO-TAe">
+                            <connections>
+                                <action selector="saveNote:" destination="KZN-ME-aEI" id="9F5-02-XhI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="Text" destination="BZ3-1R-hXz" id="Pjx-ky-4iW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gUB-DU-mtX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2778" y="-1923"/>
+        </scene>
         <!--Web View Controller-->
         <scene sceneID="ZX1-VL-FTc">
             <objects>
@@ -169,6 +212,7 @@
                                     </state>
                                     <connections>
                                         <action selector="WriteNote:" destination="5ze-5B-46B" eventType="touchUpInside" id="LWJ-sf-hK9"/>
+                                        <segue destination="J5z-cx-PBE" kind="show" id="d2A-4d-JUm"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -324,6 +368,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4e0-HX-HKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1560" y="-1075"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="q7Q-Bf-Nvq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J5z-cx-PBE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aT1-eq-KPk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KZN-ME-aEI" kind="relationship" relationship="rootViewController" id="R5g-Iy-MJp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ogc-Wz-Tv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002" y="-1923"/>
         </scene>
     </scenes>
     <resources>

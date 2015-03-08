@@ -8,6 +8,7 @@
 
 #import "WebViewController.h"
 
+
 @interface WebViewController ()
 
 @end
@@ -76,5 +77,17 @@
 }
 
 - (IBAction)WriteNote:(id)sender {
+    //[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //WriteNoteViewController* singleNote = [storyboard instantiateViewControllerWithIdentifier:@"NoteDetailView"];
+    
+    //YelpListing *ym=[YelpDataArray objectAtIndex:indexPath.row];
+    //webViewController.mobileUrl=ym.mobile_url;
+    //NSLog(@"123=%@",ym.mobile_url);
+    //webview.type=@"Rest_Details";
+    //[self.navigationController pushViewController:singleNote animated:YES];
+    //[self presentViewController:singleNote animated: YES completion:nil];
+    
 }
 @end

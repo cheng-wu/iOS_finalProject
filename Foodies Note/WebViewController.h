@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
+#import "WriteNoteViewController.h"
 
 @interface WebViewController : UIViewController<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
