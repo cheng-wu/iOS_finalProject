@@ -7,6 +7,7 @@
 //
 
 #import "NotesTableViewController.h"
+#import "NoteTableViewCell.h"
 
 @interface NotesTableViewController ()
 
@@ -33,6 +34,11 @@
      */
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     NSError * err = nil;
     NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
@@ -42,12 +48,6 @@
     
     [self.tableView reloadData];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -64,11 +64,16 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = (UITableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"NoteCell" forIndexPath:indexPath];
+    NoteTableViewCell *cell = (NoteTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"NoteCell" forIndexPath:indexPath];
     
-    Note *object = self.notes[indexPath.row];
+    Note *object = self.notes[self.notes.count-indexPath.row-1];
     
-    cell.textLabel.text = object.title;
+    cell.year.text = object.year;
+    cell.month.text = object.month;
+    cell.day.text = object.date;
+    cell.week.text = object.week;
+    cell.title.text = object.title;
+    cell.content.text = object.content;
     
     // Configure the cell...
     

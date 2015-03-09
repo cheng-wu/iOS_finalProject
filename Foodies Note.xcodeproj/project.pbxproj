@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C1C217D1AAD2D2E0047DB1B /* NoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C217C1AAD2D2E0047DB1B /* NoteTableViewCell.m */; };
 		3C6B5A181AAA50BC005C90AD /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6B5A171AAA50BC005C90AD /* WebViewController.m */; };
 		3C7097731AABDD0F005222AD /* WriteNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7097721AABDD0F005222AD /* WriteNoteViewController.m */; };
 		841880591AA10E99007ABB34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 841880581AA10E99007ABB34 /* main.m */; };
 		8418805C1AA10E99007ABB34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8418805B1AA10E99007ABB34 /* AppDelegate.m */; };
-		841880621AA10E99007ABB34 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841880611AA10E99007ABB34 /* SecondViewController.m */; };
 		841880651AA10E9A007ABB34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841880631AA10E9A007ABB34 /* Main.storyboard */; };
 		841880671AA10E9A007ABB34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841880661AA10E9A007ABB34 /* Images.xcassets */; };
 		8418806A1AA10E9A007ABB34 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841880681AA10E9A007ABB34 /* LaunchScreen.xib */; };
@@ -57,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C1C217B1AAD2D2E0047DB1B /* NoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTableViewCell.h; sourceTree = "<group>"; };
+		3C1C217C1AAD2D2E0047DB1B /* NoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTableViewCell.m; sourceTree = "<group>"; };
 		3C6B5A161AAA50BC005C90AD /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		3C6B5A171AAA50BC005C90AD /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		3C7097711AABDD0F005222AD /* WriteNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteNoteViewController.h; sourceTree = "<group>"; };
@@ -66,8 +68,6 @@
 		841880581AA10E99007ABB34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8418805A1AA10E99007ABB34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8418805B1AA10E99007ABB34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		841880601AA10E99007ABB34 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		841880611AA10E99007ABB34 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		841880641AA10E9A007ABB34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		841880661AA10E9A007ABB34 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		841880691AA10E9A007ABB34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -178,14 +178,14 @@
 				841880D11AA40A46007ABB34 /* Yelp API */,
 				8418805A1AA10E99007ABB34 /* AppDelegate.h */,
 				8418805B1AA10E99007ABB34 /* AppDelegate.m */,
-				841880601AA10E99007ABB34 /* SecondViewController.h */,
-				841880611AA10E99007ABB34 /* SecondViewController.m */,
 				841880631AA10E9A007ABB34 /* Main.storyboard */,
 				841880661AA10E9A007ABB34 /* Images.xcassets */,
 				841880681AA10E9A007ABB34 /* LaunchScreen.xib */,
 				841880561AA10E99007ABB34 /* Supporting Files */,
 				841880821AA11FE8007ABB34 /* HeaderTableViewCell.h */,
 				841880831AA11FE8007ABB34 /* HeaderTableViewCell.m */,
+				3C1C217B1AAD2D2E0047DB1B /* NoteTableViewCell.h */,
+				3C1C217C1AAD2D2E0047DB1B /* NoteTableViewCell.m */,
 				841880881AA16856007ABB34 /* DiscoverTableViewCell.h */,
 				841880891AA16856007ABB34 /* DiscoverTableViewCell.m */,
 				841880851AA12565007ABB34 /* DiscoverTableViewController.h */,
@@ -427,6 +427,7 @@
 				8418810D1AA40A46007ABB34 /* OAToken.m in Sources */,
 				84952A761AACF898001B17CF /* NotesTableViewController.m in Sources */,
 				841881031AA40A46007ABB34 /* sha1.c in Sources */,
+				3C1C217D1AAD2D2E0047DB1B /* NoteTableViewCell.m in Sources */,
 				841881091AA40A46007ABB34 /* OAPlaintextSignatureProvider.m in Sources */,
 				841881021AA40A46007ABB34 /* hmac.c in Sources */,
 				841880FF1AA40A46007ABB34 /* NSString+URLEncoding.m in Sources */,
@@ -440,7 +441,6 @@
 				8418810F1AA40A46007ABB34 /* YELPAPISample.m in Sources */,
 				841881061AA40A46007ABB34 /* OADataFetcher.m in Sources */,
 				3C6B5A181AAA50BC005C90AD /* WebViewController.m in Sources */,
-				841880621AA10E99007ABB34 /* SecondViewController.m in Sources */,
 				841880FE1AA40A46007ABB34 /* NSMutableURLRequest+Parameters.m in Sources */,
 				841881071AA40A46007ABB34 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				8418810E1AA40A46007ABB34 /* OATokenManager.m in Sources */,

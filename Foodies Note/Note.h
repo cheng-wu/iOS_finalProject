@@ -13,6 +13,12 @@
 @property (strong, nonatomic) NSURL *link;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *content;
-@property (strong, nonatomic) NSDate * date;
+//@property (strong, nonatomic) NSDate * date;
+@property (strong, nonatomic) NSString * year;
+@property (strong, nonatomic) NSString *month;
+@property (strong, nonatomic) NSString * date;
+@property (strong, nonatomic) NSString * week;
+@property (strong, nonatomic) NSString * hour;
+@property (strong, nonatomic) NSString * minute;
 
 @end
