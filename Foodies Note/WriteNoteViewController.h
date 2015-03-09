@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "Note.h"
 
-@interface WriteNoteViewController : UIViewController
+@interface WriteNoteViewController : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *Text;
 
 - (IBAction)saveNote:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+
+- (IBAction)choosephoto:(id)sender;
+
 
 @end
