@@ -20,6 +20,7 @@
     self.month = [decoder decodeObjectForKey:@"month"];
     self.date = [decoder decodeObjectForKey:@"date"];
     self.week = [decoder decodeObjectForKey:@"week"];
+    self.imagepath = [decoder decodeObjectForKey:@"imagepath"];
     
     return self;
 }
@@ -32,6 +33,7 @@
     [encoder encodeObject:self.year forKey:@"year"];
     [encoder encodeObject:self.month forKey:@"month"];
     [encoder encodeObject:self.week forKey:@"week"];
+    [encoder encodeObject:self.imagepath forKey:@"imagepath"];
 }
 
 @end

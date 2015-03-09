@@ -14,6 +14,7 @@
 
 - (IBAction)saveNote:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (strong, nonatomic) NSString * imagepath;
 
 - (IBAction)choosephoto:(id)sender;
 

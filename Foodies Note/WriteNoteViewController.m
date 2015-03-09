@@ -142,6 +142,8 @@
 
     note.minute = [NSString stringWithFormat: @"%ld", (long)min];
     
+    note.imagepath = self.imagepath;
+    
     [tmp addObject:note];
     
     NSData * notes = [NSKeyedArchiver archivedDataWithRootObject:tmp];
@@ -157,6 +159,7 @@
     
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
     
+    
     // 将图片写入文件
     
     [imageData writeToFile:fullPath atomically:NO];
@@ -167,9 +170,23 @@
     
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    [self saveImage:image withName:@"currentImage.png"];
+    //NSString *
+    NSDate *  senddate=[NSDate date];
     
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"currentImage.png"];
+   // NSLog(@"123=%@",currenttime);
+
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
+    NSString *  currenttime=[dateFormatter stringFromDate:senddate];
+    NSString *imagename = [[NSString alloc] initWithFormat:@"%@.png",currenttime];
+    NSLog(@"imagename==%@",imagename);
+    
+    [self saveImage:image withName:imagename];
+    
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imagename];
+    self.imagepath = fullPath;
+    //NSLog(@"fullpath========%@",fullPath);
     
     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
     

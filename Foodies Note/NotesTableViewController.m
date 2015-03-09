@@ -75,6 +75,11 @@
     cell.title.text = object.title;
     cell.content.text = object.content;
     
+    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:object.imagepath];
+    NSLog(@"imagepath==%@",object.imagepath);
+    NSLog(@"day==%@",object.date);
+    cell.image.image = savedImage;
+    
     // Configure the cell...
     
     return cell;

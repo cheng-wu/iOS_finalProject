@@ -20,5 +20,6 @@
 @property (strong, nonatomic) NSString * week;
 @property (strong, nonatomic) NSString * hour;
 @property (strong, nonatomic) NSString * minute;
+@property (strong, nonatomic) NSString * imagepath;
 
 @end
