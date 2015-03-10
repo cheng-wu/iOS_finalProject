@@ -384,4 +384,51 @@
     [self getRestaurantsByTerm:textfield2 islonglat:NO];
     [self.tableView reloadData];
 }
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse ||
+        status == kCLAuthorizationStatusAuthorizedAlways) {
+        
+        // Configure location manager
+        [self.locationManager setDistanceFilter:kCLHeadingFilterNone];//]500]; // meters
+        [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+        [self.locationManager setHeadingFilter:kCLDistanceFilterNone];
+        self.locationManager.activityType = CLActivityTypeFitness;
+        
+        // Start the location updating
+        [self.locationManager startUpdatingLocation];
+        
+        // Start beacon monitoring
+        CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc]
+                                                                                initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"]
+                                                                    identifier:@"Estimotes"];
+        [manager startRangingBeaconsInRegion:region];
+        
+        // Start region monitoring for Rio
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(-22.903,-43.2095);
+        CLCircularRegion *bregion = [[CLCircularRegion alloc] initWithCenter:coordinate
+                                                                      radius:100
+                                                                  identifier:@"Rio"];
+        region.notifyOnEntry = YES;
+        region.notifyOnExit = YES;
+        [self.locationManager startMonitoringForRegion:bregion];
+        
+        
+        // Show map
+        
+        [self.tableView reloadData];
+        NSLog(@"if it is here!");
+        
+    } else if (status == kCLAuthorizationStatusDenied) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location services not authorized"
+                                                        message:@"This app needs you to authorize locations services to work."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    } else {
+        NSLog(@"Wrong location status");
+    }
+}
 @end
