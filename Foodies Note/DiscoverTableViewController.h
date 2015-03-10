@@ -22,7 +22,10 @@
 @property (strong, nonatomic) WebViewController *detailViewController;
 @property (strong, nonatomic) NSDictionary *issue;
 
-@property (strong,nonatomic) CLLocationManager *locationManager;
+@property float latitude;
+@property float longitude;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 
 @end

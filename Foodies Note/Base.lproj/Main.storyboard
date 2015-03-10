@@ -105,10 +105,14 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M6Q-fj-v6D" id="kPF-Tv-mr7">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dEu-VW-A0Z">
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dEu-VW-A0Z">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="151"/>
                                         </mapView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dEu-VW-A0Z" firstAttribute="leading" secondItem="kPF-Tv-mr7" secondAttribute="leadingMargin" constant="-8" id="cp6-kQ-muV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dEu-VW-A0Z" secondAttribute="trailing" constant="-8" id="gZu-yw-Ze2"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="mapView" destination="dEu-VW-A0Z" id="tnW-Cy-LHt"/>

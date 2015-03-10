@@ -20,6 +20,7 @@
     NSMutableArray *YelpDataArray;
     BOOL issearchClicked;
     int pagenum;
+    
 }
 @property (nonatomic, strong) NSMutableArray *objects;
 
@@ -33,56 +34,15 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.tableView.delegate = self;
-    
-    issearchClicked=NO; 
-    
-    SearchedArray   =[[NSMutableArray alloc]init];
-    YelpDataArray   =[[NSMutableArray alloc]init];
+    // ** Don't forget to add NSLocationWhenInUseUsageDescription in MyApp-Info.plist and give it a string
     
     self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-    [self.locationManager requestAlwaysAuthorization];
+    self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
     [self.locationManager startUpdatingLocation];
-    // 8:00 AM to 9:00 PM
-    pagenum=0;
-    
-    
-    // Create a location manager
-    float latitude = self.locationManager.location.coordinate.latitude;
-    float longitude = self.locationManager.location.coordinate.longitude;
-    
-    NSLog(@"wocacacaca%f",latitude);
-    NSLog(@"woca%f",longitude);
-    
-    NSString *myLocation = [NSString stringWithFormat:@"%f,%f", latitude,longitude];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
-    /*
-     
-     fake search click below!!!!!
-     
-     */
-    
-    
-    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
-    //self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
-    [self.view endEditing:YES];
-    issearchClicked=NO;
-    
-
-    [self getRestaurantsByLocation:myLocation islonglat:YES];
-    [self.tableView reloadData];
-    
     
 }
 
@@ -97,23 +57,18 @@
     SearchedArray   =[[NSMutableArray alloc]init];
     YelpDataArray   =[[NSMutableArray alloc]init];
     
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-    [self.locationManager requestAlwaysAuthorization];
-    [self.locationManager startUpdatingLocation];
     // 8:00 AM to 9:00 PM
     pagenum=0;
     
     
     // Create a location manager
-    float latitude = self.locationManager.location.coordinate.latitude;
-    float longitude = self.locationManager.location.coordinate.longitude;
+    self.latitude = self.locationManager.location.coordinate.latitude;
+    self.longitude = self.locationManager.location.coordinate.longitude;
     
-    NSLog(@"wocacacaca%f",latitude);
-    NSLog(@"woca%f",longitude);
+    NSLog(@"wocacacaca%f",self.latitude);
+    NSLog(@"woca%f",self.longitude);
     
-    NSString *myLocation = [NSString stringWithFormat:@"%f,%f", latitude,longitude];
+    NSString *myLocation = [NSString stringWithFormat:@"%f,%f", self.latitude,self.longitude];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -139,6 +94,12 @@
     
     [self getRestaurantsByLocation:myLocation islonglat:YES];
     [self.tableView reloadData];
+}
+
+// Location Manager Delegate Methods
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    NSLog(@"%@", [locations lastObject]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -195,6 +156,21 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         //cell.discover = self;
+        cell.locationManager = [[CLLocationManager alloc] init];
+        cell.locationManager = self.locationManager;
+        NSLog(@"why2 = %f", cell.locationManager.location.coordinate.latitude);
+        NSLog(@"why = %f", self.locationManager.location.coordinate.latitude);
+        [cell.mapView setShowsUserLocation:YES];
+        
+        MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+        region.center.latitude = self.locationManager.location.coordinate.latitude;
+        region.center.longitude = self.locationManager.location.coordinate.longitude;
+        region.span.longitudeDelta = 0.015f;
+        region.span.longitudeDelta = 0.015f;
+        [cell.mapView setRegion:region animated:YES];
+        
+        [cell.mapView setCenterCoordinate:region.center animated:YES];
+ 
         return cell;
         
     }
@@ -399,51 +375,6 @@
     
     
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)search:(id)sender {
     
