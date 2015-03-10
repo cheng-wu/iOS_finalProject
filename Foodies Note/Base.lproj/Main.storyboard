@@ -99,6 +99,21 @@
                                     <segue destination="oQm-Ed-G2m" kind="showDetail" identifier="showDetail" trigger="accessoryAction" id="bd7-Xg-mTX"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MapCell" id="M6Q-fj-v6D" customClass="MapTableViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M6Q-fj-v6D" id="kPF-Tv-mr7">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dEu-VW-A0Z">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="151"/>
+                                        </mapView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mapView" destination="dEu-VW-A0Z" id="tnW-Cy-LHt"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="QbT-uN-HaH" id="OH1-NJ-9kd"/>

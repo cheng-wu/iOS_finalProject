@@ -41,6 +41,9 @@
 		841881121AA4101D007ABB34 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841881111AA4101D007ABB34 /* AsyncImageView.m */; };
 		841881151AA4102C007ABB34 /* YelpListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 841881141AA4102C007ABB34 /* YelpListing.m */; };
 		84952A761AACF898001B17CF /* NotesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84952A751AACF898001B17CF /* NotesTableViewController.m */; };
+		84952A7C1AAE68B7001B17CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84952A7B1AAE68B7001B17CF /* CoreLocation.framework */; };
+		84952A7E1AAE68BD001B17CF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84952A7D1AAE68BD001B17CF /* MapKit.framework */; };
+		84952A811AAE6D31001B17CF /* MapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84952A801AAE6D31001B17CF /* MapTableViewCell.m */; };
 		84A1EA481AABA09E006DDF56 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1EA471AABA09E006DDF56 /* LoginViewController.m */; };
 		84A1EA5F1AABB631006DDF56 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1EA5E1AABB631006DDF56 /* FacebookSDK.framework */; };
 		84A400091AACF2EE008D72C3 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A400081AACF2EE008D72C3 /* Note.m */; };
@@ -126,6 +129,10 @@
 		841881141AA4102C007ABB34 /* YelpListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpListing.m; sourceTree = "<group>"; };
 		84952A741AACF898001B17CF /* NotesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesTableViewController.h; sourceTree = "<group>"; };
 		84952A751AACF898001B17CF /* NotesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesTableViewController.m; sourceTree = "<group>"; };
+		84952A7B1AAE68B7001B17CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		84952A7D1AAE68BD001B17CF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		84952A7F1AAE6D31001B17CF /* MapTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTableViewCell.h; sourceTree = "<group>"; };
+		84952A801AAE6D31001B17CF /* MapTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTableViewCell.m; sourceTree = "<group>"; };
 		84A1EA461AABA09E006DDF56 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		84A1EA471AABA09E006DDF56 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		84A1EA5E1AABB631006DDF56 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
@@ -138,6 +145,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84952A7E1AAE68BD001B17CF /* MapKit.framework in Frameworks */,
+				84952A7C1AAE68B7001B17CF /* CoreLocation.framework in Frameworks */,
 				84A1EA5F1AABB631006DDF56 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +164,8 @@
 		8418804A1AA10E99007ABB34 = {
 			isa = PBXGroup;
 			children = (
+				84952A7D1AAE68BD001B17CF /* MapKit.framework */,
+				84952A7B1AAE68B7001B17CF /* CoreLocation.framework */,
 				84A1EA5E1AABB631006DDF56 /* FacebookSDK.framework */,
 				841880551AA10E99007ABB34 /* Foodies Note */,
 				841880721AA10E9A007ABB34 /* Foodies NoteTests */,
@@ -200,6 +211,8 @@
 				84A400081AACF2EE008D72C3 /* Note.m */,
 				84952A741AACF898001B17CF /* NotesTableViewController.h */,
 				84952A751AACF898001B17CF /* NotesTableViewController.m */,
+				84952A7F1AAE6D31001B17CF /* MapTableViewCell.h */,
+				84952A801AAE6D31001B17CF /* MapTableViewCell.m */,
 			);
 			path = "Foodies Note";
 			sourceTree = "<group>";
@@ -432,6 +445,7 @@
 				841881021AA40A46007ABB34 /* hmac.c in Sources */,
 				841880FF1AA40A46007ABB34 /* NSString+URLEncoding.m in Sources */,
 				8418810C1AA40A46007ABB34 /* OAServiceTicket.m in Sources */,
+				84952A811AAE6D31001B17CF /* MapTableViewCell.m in Sources */,
 				841881041AA40A46007ABB34 /* OACall.m in Sources */,
 				8418808A1AA16856007ABB34 /* DiscoverTableViewCell.m in Sources */,
 				841881121AA4101D007ABB34 /* AsyncImageView.m in Sources */,
