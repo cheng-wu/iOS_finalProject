@@ -414,6 +414,15 @@
         region.notifyOnExit = YES;
         [self.locationManager startMonitoringForRegion:bregion];
         
+        self.latitude = self.locationManager.location.coordinate.latitude;
+        self.longitude = self.locationManager.location.coordinate.longitude;
+        
+        NSLog(@"wocacacaca%f",self.latitude);
+        NSLog(@"woca%f",self.longitude);
+        
+        NSString *myLocation = [NSString stringWithFormat:@"%f,%f", self.latitude,self.longitude];
+        [self getRestaurantsByLocation:myLocation islonglat:YES];
+        
         
         // Show map
         
