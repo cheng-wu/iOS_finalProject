@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <MapKit/MapKit.h>
+#import "MapTableViewCell.h"
 
 @class WebViewController;
 
@@ -19,6 +21,11 @@
 
 @property (strong, nonatomic) WebViewController *detailViewController;
 @property (strong, nonatomic) NSDictionary *issue;
+
+@property float latitude;
+@property float longitude;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 
 @end

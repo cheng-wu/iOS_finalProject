@@ -20,7 +20,7 @@
     NSMutableArray *YelpDataArray;
     BOOL issearchClicked;
     int pagenum;
-    CLLocationManager *locationManager;
+    
 }
 @property (nonatomic, strong) NSMutableArray *objects;
 
@@ -34,6 +34,22 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    // ** Don't forget to add NSLocationWhenInUseUsageDescription in MyApp-Info.plist and give it a string
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.tableView.delegate = self;
     
     issearchClicked=NO;
@@ -41,12 +57,18 @@
     SearchedArray   =[[NSMutableArray alloc]init];
     YelpDataArray   =[[NSMutableArray alloc]init];
     
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
     // 8:00 AM to 9:00 PM
     pagenum=0;
+    
+    
+    // Create a location manager
+    self.latitude = self.locationManager.location.coordinate.latitude;
+    self.longitude = self.locationManager.location.coordinate.longitude;
+    
+    NSLog(@"wocacacaca%f",self.latitude);
+    NSLog(@"woca%f",self.longitude);
+    
+    NSString *myLocation = [NSString stringWithFormat:@"%f,%f", self.latitude,self.longitude];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -60,6 +82,8 @@
      fake search click below!!!!!
      
      */
+    
+    
     self.navigationController.navigationBar.barTintColor = [UIColor redColor];
     //self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -67,11 +91,15 @@
     [self.view endEditing:YES];
     issearchClicked=NO;
     
-
-    [self getRestaurantsByLocation:@"Chicago" islonglat:NO];
+    
+    [self getRestaurantsByLocation:myLocation islonglat:YES];
     [self.tableView reloadData];
-    
-    
+}
+
+// Location Manager Delegate Methods
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    NSLog(@"%@", [locations lastObject]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,6 +144,37 @@
         return cell;
     }
     
+    if (rowNo ==1){
+        static NSString *cellId = @"MapCell";
+        MapTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        
+        
+        if (cell == nil)
+        {
+            cell = [[MapTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //cell.discover = self;
+        cell.locationManager = [[CLLocationManager alloc] init];
+        cell.locationManager = self.locationManager;
+        NSLog(@"why2 = %f", cell.locationManager.location.coordinate.latitude);
+        NSLog(@"why = %f", self.locationManager.location.coordinate.latitude);
+        [cell.mapView setShowsUserLocation:YES];
+        
+        MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+        region.center.latitude = self.locationManager.location.coordinate.latitude;
+        region.center.longitude = self.locationManager.location.coordinate.longitude;
+        region.span.longitudeDelta = 0.015f;
+        region.span.longitudeDelta = 0.015f;
+        [cell.mapView setRegion:region animated:YES];
+        
+        [cell.mapView setCenterCoordinate:region.center animated:YES];
+ 
+        return cell;
+        
+    }
+    
     //DiscoverTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantCell" forIndexPath:indexPath];
     //cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
@@ -124,7 +183,7 @@
     
     DiscoverTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    [cell setCellData:[YelpDataArray objectAtIndex:indexPath.row-1]];
+    [cell setCellData:[YelpDataArray objectAtIndex:indexPath.row-2]];
     return cell;
 }
 
@@ -159,16 +218,18 @@
     //    menuVC.shopId = [[_shopData objectAtIndex:[indexPath row]] objectForKey:@"id"];
     //    [self.navigationController pushViewController:menuVC animated:YES];
     //    self.hidesBottomBarWhenPushed = NO;
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    WebViewController* webViewController = [storyboard instantiateViewControllerWithIdentifier:@"webViewController"];
-    
-    YelpListing *ym=[YelpDataArray objectAtIndex:indexPath.row];
-    webViewController.mobileUrl=ym.mobile_url;
-    //NSLog(@"123=%@",ym.mobile_url);
-    //webview.type=@"Rest_Details";
-    [self.navigationController pushViewController:webViewController animated:YES];
+    if(indexPath.row != 1){
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        WebViewController* webViewController = [storyboard instantiateViewControllerWithIdentifier:@"webViewController"];
+        
+        YelpListing *ym=[YelpDataArray objectAtIndex:indexPath.row-2];
+        webViewController.mobileUrl=ym.mobile_url;
+        //NSLog(@"123=%@",ym.mobile_url);
+        //webview.type=@"Rest_Details";
+        [self.navigationController pushViewController:webViewController animated:YES];
+    }
        
 }
 
@@ -192,7 +253,7 @@
         NSLog(@"longitude=%@",[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude]);
         NSLog(@"latitude=%@",[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude]);
         [self  getRestaurantsByLocation:[NSString stringWithFormat:@"%.8f,%.8f", currentLocation.coordinate.longitude, currentLocation.coordinate.latitude] islonglat:YES];
-        [locationManager stopUpdatingLocation];
+        [self.locationManager stopUpdatingLocation];
     }
 }
 
@@ -315,51 +376,6 @@
     
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)search:(id)sender {
     
     //UITextField *textfield;
@@ -367,5 +383,61 @@
     textfield2 = self.searchTerm.text;
     [self getRestaurantsByTerm:textfield2 islonglat:NO];
     [self.tableView reloadData];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse ||
+        status == kCLAuthorizationStatusAuthorizedAlways) {
+        
+        // Configure location manager
+        [self.locationManager setDistanceFilter:kCLHeadingFilterNone];//]500]; // meters
+        [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+        [self.locationManager setHeadingFilter:kCLDistanceFilterNone];
+        self.locationManager.activityType = CLActivityTypeFitness;
+        
+        // Start the location updating
+        [self.locationManager startUpdatingLocation];
+        
+        // Start beacon monitoring
+        CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc]
+                                                                                initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"]
+                                                                    identifier:@"Estimotes"];
+        [manager startRangingBeaconsInRegion:region];
+        
+        // Start region monitoring for Rio
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(-22.903,-43.2095);
+        CLCircularRegion *bregion = [[CLCircularRegion alloc] initWithCenter:coordinate
+                                                                      radius:100
+                                                                  identifier:@"Rio"];
+        region.notifyOnEntry = YES;
+        region.notifyOnExit = YES;
+        [self.locationManager startMonitoringForRegion:bregion];
+        
+        self.latitude = self.locationManager.location.coordinate.latitude;
+        self.longitude = self.locationManager.location.coordinate.longitude;
+        
+        NSLog(@"wocacacaca%f",self.latitude);
+        NSLog(@"woca%f",self.longitude);
+        
+        NSString *myLocation = [NSString stringWithFormat:@"%f,%f", self.latitude,self.longitude];
+        [self getRestaurantsByLocation:myLocation islonglat:YES];
+        
+        
+        // Show map
+        
+        [self.tableView reloadData];
+        NSLog(@"if it is here!");
+        
+    } else if (status == kCLAuthorizationStatusDenied) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location services not authorized"
+                                                        message:@"This app needs you to authorize locations services to work."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    } else {
+        NSLog(@"Wrong location status");
+    }
 }
 @end

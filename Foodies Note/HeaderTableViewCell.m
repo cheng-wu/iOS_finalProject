@@ -33,8 +33,8 @@
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flowLayout.itemSize = CGSizeMake(60,60);
-    UIEdgeInsets top = {20,30,20,30};
+    flowLayout.itemSize = CGSizeMake(70,70);
+    UIEdgeInsets top = {10,10,10,10};
     flowLayout.sectionInset = top;
     
     UICollectionView *firstView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height+20) collectionViewLayout:flowLayout];
@@ -192,7 +192,7 @@
     else
     {
         identify = @"secondCellId";
-        index = 8;
+        index = 9;
         //NSLog(@"124");
         //self.flag=1;
     }
