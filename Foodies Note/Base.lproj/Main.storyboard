@@ -492,7 +492,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="ixZ-D4-AJa">
             <objects>
-                <viewController storyboardIdentifier="rootControl" id="U4c-mv-RRd" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rootController" id="U4c-mv-RRd" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4dZ-x2-flN"/>
                         <viewControllerLayoutGuide type="bottom" id="SFN-z8-8UA"/>
@@ -667,6 +667,6 @@
         <image name="view2" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2ne-8G-6WC"/>
+        <segue reference="Oki-Eg-a19"/>
     </inferredMetricsTieBreakers>
 </document>
