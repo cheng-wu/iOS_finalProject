@@ -41,6 +41,7 @@
 		8418810F1AA40A46007ABB34 /* YELPAPISample.m in Sources */ = {isa = PBXBuildFile; fileRef = 841880FC1AA40A46007ABB34 /* YELPAPISample.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		841881121AA4101D007ABB34 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841881111AA4101D007ABB34 /* AsyncImageView.m */; };
 		841881151AA4102C007ABB34 /* YelpListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 841881141AA4102C007ABB34 /* YelpListing.m */; };
+		84571B491AB0DBB4004647C0 /* MeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84571B481AB0DBB4004647C0 /* MeTableViewController.m */; };
 		84952A761AACF898001B17CF /* NotesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84952A751AACF898001B17CF /* NotesTableViewController.m */; };
 		84952A7C1AAE68B7001B17CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84952A7B1AAE68B7001B17CF /* CoreLocation.framework */; };
 		84952A7E1AAE68BD001B17CF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84952A7D1AAE68BD001B17CF /* MapKit.framework */; };
@@ -130,6 +131,8 @@
 		841881111AA4101D007ABB34 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		841881131AA4102C007ABB34 /* YelpListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpListing.h; sourceTree = "<group>"; };
 		841881141AA4102C007ABB34 /* YelpListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpListing.m; sourceTree = "<group>"; };
+		84571B471AB0DBB4004647C0 /* MeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeTableViewController.h; sourceTree = "<group>"; };
+		84571B481AB0DBB4004647C0 /* MeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeTableViewController.m; sourceTree = "<group>"; };
 		84952A741AACF898001B17CF /* NotesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesTableViewController.h; sourceTree = "<group>"; };
 		84952A751AACF898001B17CF /* NotesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesTableViewController.m; sourceTree = "<group>"; };
 		84952A7B1AAE68B7001B17CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -218,6 +221,8 @@
 				84952A751AACF898001B17CF /* NotesTableViewController.m */,
 				84952A7F1AAE6D31001B17CF /* MapTableViewCell.h */,
 				84952A801AAE6D31001B17CF /* MapTableViewCell.m */,
+				84571B471AB0DBB4004647C0 /* MeTableViewController.h */,
+				84571B481AB0DBB4004647C0 /* MeTableViewController.m */,
 			);
 			path = "Foodies Note";
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 				841881121AA4101D007ABB34 /* AsyncImageView.m in Sources */,
 				8418810B1AA40A46007ABB34 /* OARequestParameter.m in Sources */,
 				8418810A1AA40A46007ABB34 /* OAProblem.m in Sources */,
+				84571B491AB0DBB4004647C0 /* MeTableViewController.m in Sources */,
 				841881151AA4102C007ABB34 /* YelpListing.m in Sources */,
 				8418810F1AA40A46007ABB34 /* YELPAPISample.m in Sources */,
 				841881061AA40A46007ABB34 /* OADataFetcher.m in Sources */,

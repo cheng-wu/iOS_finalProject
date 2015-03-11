@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 - (IBAction)goback:(id)sender;
 - (IBAction)WriteNote:(id)sender;
+- (IBAction)CheckIn:(id)sender;
 
 @property (strong, nonatomic) NSMutableDictionary* URLArray;
 //@property(nonatomic,retain)NSString *type;

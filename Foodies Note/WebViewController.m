@@ -123,4 +123,24 @@
     [self.navigationController pushViewController:writeNoteController animated:YES];
     
 }
+
+- (IBAction)CheckIn:(id)sender {
+    NSError * err = nil;
+    NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
+    NSURL *file = [docs URLByAppendingPathComponent:@"checkin.plist"];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:file];
+    NSArray * articleArray = (NSArray *) [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSMutableArray * tmp = nil;
+    if (articleArray) {
+        tmp = [[NSMutableArray alloc] initWithArray:articleArray];
+    } else {
+        tmp = [[NSMutableArray alloc] init];
+    }
+    
+    [tmp addObject:self.yelpObject];
+    NSData * checkin = [NSKeyedArchiver archivedDataWithRootObject:tmp];
+    [checkin writeToURL:file atomically:NO];
+    
+}
+
 @end
