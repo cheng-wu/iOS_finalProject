@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "SWRevealViewController.h"
 
 @interface LoginViewController () <FBLoginViewDelegate>
 
@@ -39,7 +40,7 @@
     
     NSLog(@"testasdafsfsafas");
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UITabBarController* controller = [storyboard instantiateViewControllerWithIdentifier:@"rootController"];
+    SWRevealViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
     [self presentViewController:controller animated:YES completion:nil];
 }
 
