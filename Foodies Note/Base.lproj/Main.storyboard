@@ -395,7 +395,7 @@
         <!--rootController-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController storyboardIdentifier="rootController" title="rootController" id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController title="rootController" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -492,7 +492,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="ixZ-D4-AJa">
             <objects>
-                <viewController id="U4c-mv-RRd" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rootControl" id="U4c-mv-RRd" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4dZ-x2-flN"/>
                         <viewControllerLayoutGuide type="bottom" id="SFN-z8-8UA"/>
@@ -667,6 +667,6 @@
         <image name="view2" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Oki-Eg-a19"/>
+        <segue reference="2ne-8G-6WC"/>
     </inferredMetricsTieBreakers>
 </document>
