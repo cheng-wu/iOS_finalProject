@@ -13,10 +13,8 @@
 #import "YelpListing.h"
 #import "DiscoverTableViewCell.h"
 #import "WebViewController.h"
-#import "SWRevealViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
 
-@interface DiscoverTableViewController ()<CLLocationManagerDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate, FBLoginViewDelegate>
+@interface DiscoverTableViewController ()<CLLocationManagerDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
     NSMutableArray *SearchedArray;
     NSMutableArray *YelpDataArray;
@@ -46,16 +44,6 @@
     }
     [self.locationManager startUpdatingLocation];
     
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.menuButton setTarget: self.revealViewController];
-        [self.menuButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    }
-    
-    self.loginView = [[FBLoginView alloc] init];
-    self.loginView.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -454,17 +442,5 @@
     } else {
         NSLog(@"Wrong location status");
     }
-}
-
-- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    
-    NSLog(@"nimabi");
-}
-
-- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UITabBarController* controller = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self presentViewController:controller animated:YES completion:nil];
 }
 @end
