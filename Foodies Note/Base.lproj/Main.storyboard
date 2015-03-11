@@ -493,7 +493,11 @@
         <scene sceneID="ixZ-D4-AJa">
             <objects>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <viewController id="U4c-mv-RRd" customClass="SWRevealViewController" sceneMemberID="viewController">
+=======
+                <viewController storyboardIdentifier="rootController" id="U4c-mv-RRd" customClass="SWRevealViewController" sceneMemberID="viewController">
+>>>>>>> origin/master
 =======
                 <viewController storyboardIdentifier="rootController" id="U4c-mv-RRd" customClass="SWRevealViewController" sceneMemberID="viewController">
 >>>>>>> origin/master
