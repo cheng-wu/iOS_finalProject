@@ -8,6 +8,7 @@
 
 #import "WriteNoteViewController.h"
 
+
 @interface WriteNoteViewController ()
 
 @property BOOL isFullScreen;
@@ -19,6 +20,91 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.Text.placeholder = @"Say something...";
+    [self.Text becomeFirstResponder];
+    //self.navigationController.title = @"New Note";
+    //self.navigationController.title.
+    //self.navigationItem.backBarButtonItem.tintColor = [UIColor blackColor];
+    //self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+    //self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+    
+    //self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *now;
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitDay |NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    now=[NSDate date];
+    comps = [calendar components:unitFlags fromDate:now];
+    NSInteger year = [comps year];
+    //NSInteger week = [comps weekday];
+    NSInteger month = [comps month];
+    NSInteger day = [comps day];
+    //NSInteger hour = [comps hour];
+    //NSInteger min = [comps minute];
+    //NSInteger sec = [comps second];
+    //NSString *month2;
+    
+    //Note * note = [[Note alloc] init];
+    //note.content = self.Text.text;
+    self.year.text = [NSString stringWithFormat: @"%ld", (long)year];
+    if (month == 1) {
+        self.month.text = [NSString stringWithFormat: @"JAN"];
+    }
+    else if(month == 2){
+        self.month.text = [NSString stringWithFormat: @"FEB"];
+    }
+    else if(month == 3){
+        self.month.text = [NSString stringWithFormat: @"MAR"];
+    }
+    else if(month == 4){
+        self.month.text = [NSString stringWithFormat: @"APR"];
+    }
+    else if(month == 5){
+        self.month.text = [NSString stringWithFormat: @"MAY"];
+    }
+    else if(month == 6){
+        self.month.text = [NSString stringWithFormat: @"JUN"];
+    }
+    else if(month == 7){
+        self.month.text = [NSString stringWithFormat: @"JUL"];
+    }
+    else if(month == 8){
+        self.month.text = [NSString stringWithFormat: @"AUG"];
+    }
+    else if(month == 9){
+        self.month.text = [NSString stringWithFormat: @"SEP"];
+    }
+    else if(month == 10){
+        self.month.text = [NSString stringWithFormat: @"OCT"];
+    }
+    else if(month == 11){
+        self.month.text = [NSString stringWithFormat: @"NOV"];
+    }
+    else if(month == 12){
+        self.month.text = [NSString stringWithFormat: @"DEC"];
+    }
+    //self.month.text = note.month;
+    //note.month = [NSString stringWithFormat: @"%ld", (long)month];
+
+    //    note.week = [NSString stringWithFormat: @"%ld", (long)week];
+    
+    self.day.text = [NSString stringWithFormat: @"%ld", (long)day];
+
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 180.0-1, 375, 1)];
+    line.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0];
+    [self.view addSubview:line];
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 320.0-1, 375, 1)];
+    line2.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0];
+    [self.view addSubview:line2];
+   
+}
+-(void) viewWillAppear:(BOOL)animated
+{
+     //self.navigationItem.title =@"123";
+    //self.navigationItem.titleView.tintColor = [UIColor whiteColor];
+    //self.navigationItem.backBarButtonItem.tintColor = [UIColor blackColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,6 +198,7 @@
     else if(month == 12){
         note.month = [NSString stringWithFormat: @"DEC ,"];
     }
+    //self.month.text = note.month;
     //note.month = [NSString stringWithFormat: @"%ld", (long)month];
     if (week == 1) {
         note.week = [NSString stringWithFormat: @"Sunday"];
@@ -144,10 +231,15 @@
     
     note.imagepath = self.imagepath;
     
+    //note.title = ;
+    
     [tmp addObject:note];
     
     NSData * notes = [NSKeyedArchiver archivedDataWithRootObject:tmp];
     [notes writeToURL:file atomically:NO];
+    
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+    //[self.view addSubview:self.noteview.view];
 }
 
 

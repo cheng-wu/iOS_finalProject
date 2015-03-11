@@ -209,36 +209,69 @@
     NSLog(@"lalala=%ld",(long)iconnumber);
     if(iconnumber == 0)
     {
-        [self.discover getRestaurantsByTerm:@"pizza" islonglat:NO];
+        [self.discover getRestaurantsByTerm:@"mexian" islonglat:NO];
     }
     if(iconnumber == 1)
     {
-        [self.discover getRestaurantsByTerm:@"chinese" islonglat:NO];
+        [self.discover getRestaurantsByTerm:@"coffee" islonglat:NO];
     }
     if(iconnumber == 2)
     {
-        [self.discover getRestaurantsByTerm:@"thai" islonglat:NO];
+        [self.discover getRestaurantsByTerm:@"donut" islonglat:NO];
     }
     if(iconnumber == 3)
     {
-        [self.discover getRestaurantsByTerm:@"sushi" islonglat:NO];
+        [self.discover getRestaurantsByTerm:@"pizza" islonglat:NO];
     }
     if(iconnumber == 4)
     {
-        [self.discover getRestaurantsByTerm:@"mexian" islonglat:NO];
+        [self.discover getRestaurantsByTerm:@"grill" islonglat:NO];
     }
     if(iconnumber == 5)
     {
-        [self.discover getRestaurantsByTerm:@"indian" islonglat:NO];
+        [self.discover getRestaurantsByTerm:@"icecream" islonglat:NO];
     }
     if(iconnumber == 6)
     {
-        [self.discover getRestaurantsByTerm:@"burger" islonglat:NO];
+        [self.discover getRestaurantsByTerm:@"hot dog" islonglat:NO];
     }
     if(iconnumber == 7)
     {
+        [self.discover getRestaurantsByTerm:@"pop corn" islonglat:NO];
+    }
+    if(iconnumber == 8)
+    {
+        [self.discover getRestaurantsByTerm:@"fries" islonglat:NO];
+    }
+    if(iconnumber == 9)
+    {
         [self.discover getRestaurantsByTerm:@"drink" islonglat:NO];
     }
+    if(iconnumber == 10)
+    {
+        [self.discover getRestaurantsByTerm:@"bread" islonglat:NO];
+    }
+    if(iconnumber == 11)
+    {
+        [self.discover getRestaurantsByTerm:@"cake" islonglat:NO];
+    }
+    if(iconnumber == 12)
+    {
+        [self.discover getRestaurantsByTerm:@"tea" islonglat:NO];
+    }
+    if(iconnumber == 13)
+    {
+        [self.discover getRestaurantsByTerm:@"beer" islonglat:NO];
+    }
+    if(iconnumber == 14)
+    {
+        [self.discover getRestaurantsByTerm:@"burger" islonglat:NO];
+    }
+    if(iconnumber == 15)
+    {
+        [self.discover getRestaurantsByTerm:@"chinese" islonglat:NO];
+    }
+    
 }
 
 

@@ -25,6 +25,9 @@
 @property float latitude;
 @property float longitude;
 
+@property (strong, nonatomic) NSString *restname;
+@property (strong, nonatomic) NSURL * resturl;
+
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
 

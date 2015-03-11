@@ -18,4 +18,7 @@
 @property (strong, nonatomic) NSMutableDictionary* URLArray;
 //@property(nonatomic,retain)NSString *type;
 @property(nonatomic,retain)NSString*mobileUrl;
+
+//@property(nonatomic, retain)NSString *restname;
+//@property(nonatomic, retain)NSURL *resturl;
 @end

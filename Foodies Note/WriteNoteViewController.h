@@ -8,13 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "Note.h"
+#import "NotesTableViewController.h"
+#import "CPTextViewPlaceholder.h"
 
 @interface WriteNoteViewController : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-@property (weak, nonatomic) IBOutlet UITextView *Text;
+
 
 - (IBAction)saveNote:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (strong, nonatomic) NSString * imagepath;
+@property (weak, nonatomic) IBOutlet CPTextViewPlaceholder *Text;
+@property (weak, nonatomic) IBOutlet UIImageView *restimage;
+@property (weak, nonatomic) IBOutlet UILabel *restname;
+@property (weak, nonatomic) IBOutlet UILabel *year;
+@property (weak, nonatomic) IBOutlet UILabel *month;
+@property (weak, nonatomic) IBOutlet UILabel *day;
+
+@property NotesTableViewController *noteview;
 
 - (IBAction)choosephoto:(id)sender;
 

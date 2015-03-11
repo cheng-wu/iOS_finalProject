@@ -78,7 +78,10 @@
     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:object.imagepath];
     NSLog(@"imagepath==%@",object.imagepath);
     NSLog(@"day==%@",object.date);
-    cell.image.image = savedImage;
+    if (object.imagepath!=nil) {
+        cell.image.image = savedImage;
+    }
+    
     
     // Configure the cell...
     

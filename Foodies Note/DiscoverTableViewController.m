@@ -184,6 +184,7 @@
     DiscoverTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     [cell setCellData:[YelpDataArray objectAtIndex:indexPath.row-2]];
+    
     return cell;
 }
 
@@ -226,6 +227,8 @@
         
         YelpListing *ym=[YelpDataArray objectAtIndex:indexPath.row-2];
         webViewController.mobileUrl=ym.mobile_url;
+        //webViewController.restname = ;
+        //webViewController.resturl = ;
         //NSLog(@"123=%@",ym.mobile_url);
         //webview.type=@"Rest_Details";
         [self.navigationController pushViewController:webViewController animated:YES];
