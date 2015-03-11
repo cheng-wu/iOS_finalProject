@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import <MapKit/MapKit.h>
 #import "MapTableViewCell.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @class WebViewController;
 
@@ -29,6 +30,10 @@
 @property (strong, nonatomic) NSURL * resturl;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
+
+@property (strong, nonatomic) FBLoginView *loginView;
 
 
 @end
