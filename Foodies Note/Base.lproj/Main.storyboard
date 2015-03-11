@@ -27,7 +27,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tyx-BD-KXX" id="QB4-eA-huv">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LOs-i2-946">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LOs-i2-946">
                                             <rect key="frame" x="64" y="110" width="456" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="uwC-Rp-Yim"/>
@@ -45,7 +45,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k18-xx-DwS">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k18-xx-DwS">
                                             <rect key="frame" x="8" y="123" width="26" height="21"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -152,7 +152,7 @@
         <!--New Note-->
         <scene sceneID="cIb-nl-9Hw">
             <objects>
-                <viewController storyboardIdentifier="NotoDetailView" id="KZN-ME-aEI" customClass="WriteNoteViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WriteNote" id="KZN-ME-aEI" customClass="WriteNoteViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NbH-tX-Yun"/>
                         <viewControllerLayoutGuide type="bottom" id="fBr-Vn-8V9"/>
@@ -283,18 +283,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQM-3a-DN9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Els-Ce-lqM">
+                                <rect key="frame" x="16" y="72" width="151" height="157"/>
+                            </imageView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="95h-J5-XOO">
+                                <rect key="frame" x="0.0" y="400" width="357" height="207"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb7-cc-LVc">
+                                <rect key="frame" x="193" y="85" width="233" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dq3-2a-vld">
+                                <rect key="frame" x="193" y="121" width="240" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oSN-Xd-8Km">
+                                <rect key="frame" x="193" y="150" width="240" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="27e-lO-glp">
+                                <rect key="frame" x="189" y="187" width="168" height="23"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-cM-3jS">
+                                <rect key="frame" x="24" y="248" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y73-aQ-7Gi">
+                                <rect key="frame" x="283" y="274" width="74" height="76"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="AQM-3a-DN9" firstAttribute="top" secondItem="zck-g6-giL" secondAttribute="topMargin" id="BDb-6f-phB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="AQM-3a-DN9" secondAttribute="trailing" constant="-16" id="Tfc-Qg-6Ah"/>
-                            <constraint firstItem="mSN-7d-cQZ" firstAttribute="top" secondItem="AQM-3a-DN9" secondAttribute="bottom" id="gE0-7I-c1k"/>
-                            <constraint firstItem="AQM-3a-DN9" firstAttribute="leading" secondItem="zck-g6-giL" secondAttribute="leadingMargin" constant="-16" id="hWg-r3-FfP"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pEI-It-dl0">
                         <nil key="title"/>
@@ -305,27 +332,25 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="PoO-bp-WWi">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxL-wd-AG3">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="38"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                    <state key="normal" title="Write a Note">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="WriteNote:" destination="5ze-5B-46B" eventType="touchUpInside" id="LWJ-sf-hK9"/>
-                                        <segue destination="J5z-cx-PBE" kind="show" id="d2A-4d-JUm"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="Pw9-tW-N96">
+                            <connections>
+                                <action selector="WriteNote:" destination="5ze-5B-46B" id="UUT-Oq-hlT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="webview" destination="AQM-3a-DN9" id="8wG-w3-c8Y"/>
+                        <outlet property="mapView" destination="95h-J5-XOO" id="Lgy-Ej-9Fs"/>
+                        <outlet property="phoneLabel" destination="oSN-Xd-8Km" id="z90-o4-SEt"/>
+                        <outlet property="rating_ImageView" destination="27e-lO-glp" id="oag-zB-xDo"/>
+                        <outlet property="rest_ImageView" destination="Els-Ce-lqM" id="2tz-ij-x9f"/>
+                        <outlet property="restaurantAddress" destination="dq3-2a-vld" id="az6-28-2Ra"/>
+                        <outlet property="restaurantName" destination="Mb7-cc-LVc" id="PzC-8Q-UH3"/>
+                        <outlet property="review" destination="pdn-cM-3jS" id="OJB-I8-p3m"/>
+                        <outlet property="reviewer" destination="Y73-aQ-7Gi" id="2Sj-UB-pTm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQy-DX-ZME" userLabel="First Responder" sceneMemberID="firstResponder"/>

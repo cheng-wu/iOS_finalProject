@@ -10,6 +10,7 @@
 #import "Note.h"
 #import "NotesTableViewController.h"
 #import "CPTextViewPlaceholder.h"
+#import "YelpListing.h"
 
 @interface WriteNoteViewController : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -23,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *year;
 @property (weak, nonatomic) IBOutlet UILabel *month;
 @property (weak, nonatomic) IBOutlet UILabel *day;
+
+@property (strong, nonatomic) YelpListing *yelpObject;
 
 @property NotesTableViewController *noteview;
 
