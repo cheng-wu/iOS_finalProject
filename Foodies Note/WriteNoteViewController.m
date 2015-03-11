@@ -97,6 +97,12 @@
     UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 320.0-1, 375, 1)];
     line2.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0];
     [self.view addSubview:line2];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
    
 }
 -(void) viewWillAppear:(BOOL)animated
@@ -400,4 +406,10 @@
     
 
 }
+
+-(void)dismissKeyboard {
+    [self.Text resignFirstResponder];
+}
+
+
 @end
