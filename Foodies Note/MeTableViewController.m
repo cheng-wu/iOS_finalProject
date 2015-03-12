@@ -30,7 +30,7 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     NSError * err = nil;
     NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
     NSURL *file = [docs URLByAppendingPathComponent:@"checkin.plist"];
@@ -80,6 +80,8 @@
         cell.level.text = self.level;
         cell.checkinNum.text = self.checkinNum;
         NSLog(@"just a test2=%@",self.name);
+        FBLoginView *loginView = [[FBLoginView alloc] init];
+        loginView.delegate = cell;
         return cell;
         
     }

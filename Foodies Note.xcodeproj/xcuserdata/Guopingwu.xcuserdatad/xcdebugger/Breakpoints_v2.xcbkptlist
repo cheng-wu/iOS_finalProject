@@ -106,7 +106,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Foodies Note/MeTableViewController.m"
-            timestampString = "447816820.045604"
+            timestampString = "447895603.234809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foodies Note/MeTableViewController.m"
+            timestampString = "447895603.234809"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "104"
@@ -122,27 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Foodies Note/MeTableViewController.m"
-            timestampString = "447816820.045604"
+            timestampString = "447895603.234809"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Foodies Note/MeTableViewController.m"
-            timestampString = "447816820.045604"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
