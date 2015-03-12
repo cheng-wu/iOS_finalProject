@@ -152,7 +152,6 @@
         <!--New Note-->
         <scene sceneID="cIb-nl-9Hw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gUB-DU-mtX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="WriteNote" id="KZN-ME-aEI" customClass="WriteNoteViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NbH-tX-Yun"/>
@@ -305,6 +304,7 @@
                         <outlet property="year" destination="Q8q-Le-o6U" id="9h8-hO-xLg"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gUB-DU-mtX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2778" y="-1923"/>
         </scene>
@@ -476,6 +476,7 @@
                         <segue destination="bmy-Rv-KV7" kind="relationship" relationship="viewControllers" id="2ne-8G-6WC"/>
                         <segue destination="1iM-Ea-FZ6" kind="relationship" relationship="viewControllers" id="sRh-NN-QeG"/>
                         <segue destination="UH5-eg-vjN" kind="relationship" relationship="viewControllers" id="XAM-ts-wyv"/>
+                        <segue destination="Gta-TH-rQ8" kind="relationship" relationship="viewControllers" id="aXq-OT-W1d"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -772,11 +773,50 @@
             </objects>
             <point key="canvasLocation" x="726" y="1199"/>
         </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="Xn9-L8-zhT">
+            <objects>
+                <viewController id="wLc-o5-UVd" customClass="settingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r1e-zr-skA"/>
+                        <viewControllerLayoutGuide type="bottom" id="PxW-Tw-vZP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3YA-I6-J4x">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oXL-mh-hbz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="od4-rw-G4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1538" y="1911"/>
+        </scene>
+        <!--settings-->
+        <scene sceneID="d8Q-Z1-bEh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gta-TH-rQ8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="settings" image="setting" id="p4Q-q4-cZ1"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AMh-L2-a09">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wLc-o5-UVd" kind="relationship" relationship="rootViewController" id="OGf-H6-p7Y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c2m-OE-0Qy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="726" y="1923"/>
+        </scene>
     </scenes>
     <resources>
         <image name="discover" width="31" height="31"/>
         <image name="icon_13" width="200" height="200"/>
         <image name="notes" width="31" height="31"/>
+        <image name="setting" width="31" height="31"/>
         <image name="takephoto" width="50" height="50"/>
         <image name="user" width="31" height="31"/>
         <image name="view2" width="50" height="50"/>
