@@ -7,6 +7,7 @@
 //
 
 #import "WebViewController.h"
+#import "AsyncImageView.h"
 
 
 @interface WebViewController ()
@@ -38,7 +39,7 @@
     //self.webview.scalesPageToFit = YES;
     //[self.view addSubview:self.webview];
     //NSURL *HYHAppsURL = [NSURL URLWithString:self.mobileUrl];
-    NSURL *HYHAppsURL = [NSURL URLWithString:self.mobileUrl];
+    NSURL *HYHAppsURL = [NSURL URLWithString:self.yelpObject.url];
                          
                          NSURLRequest *Request = [NSURLRequest requestWithURL:HYHAppsURL];
                          
@@ -50,9 +51,63 @@
     NSLog(@"123321");
     NSLog(@"124=%@",HYHAppsURL);
     
+    NSLog(@"223344=%@",self.yelpObject.coordinate);
+    
+    self.latitude = [self.yelpObject.coordinate valueForKey:@"latitude"];
+    self.longitude = [self.yelpObject.coordinate valueForKey:@"longitude"];
+    
+    
+    //float latitude = [[components objectAtIndex:1] floatValue];
+    //float longitude = [[components objectAtIndex:2] floatValue];
+    //NSString *loc = [components objectAtIndex:3];
+    
+    
     //self.webview.backgroundColor = [UIColor whiteColor];
     //self.view.alpha=0;
     //[self.webview reload];
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation.coordinate = CLLocationCoordinate2DMake([self.latitude floatValue], [self.longitude floatValue]);
+    annotation.title = self.yelpObject.name;
+    annotation.subtitle = self.yelpObject.address;
+    [self.mapView addAnnotation:annotation];
+    
+    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+    region.center.latitude = [self.latitude floatValue];
+    region.center.longitude = [self.longitude floatValue];
+    region.span.longitudeDelta = 0.015f;
+    region.span.longitudeDelta = 0.015f;
+    [self.mapView setRegion:region animated:YES];
+    [self.mapView setCenterCoordinate:region.center animated:YES];
+    
+    self.restaurantName.text=self.yelpObject.name;
+    self.restaurantAddress.text=[self.yelpObject.address description];
+    if(self.yelpObject.image_url)
+        self.rest_ImageView.imageURL=[NSURL URLWithString:self.yelpObject.image_url];
+    self.rating_ImageView.imageURL=[NSURL URLWithString:self.yelpObject.rating_img_url_large];
+    self.phoneLabel.text=[NSString stringWithFormat:@"Ph: %@",self.yelpObject.display_phone];
+    //self.review_countlabel.text=[NSString stringWithFormat:@"Reviewed by %@users",rmodel.review_count];
+    self.reviewer.imageURL =[NSURL URLWithString:self.yelpObject.snippet_image_url];
+    self.review.text = self.yelpObject.snippet_text;
+    
+    NSError * err = nil;
+    NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
+    NSURL *file = [docs URLByAppendingPathComponent:@"checkin.plist"];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:file];
+    NSArray * articleArray = (NSArray *) [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSMutableArray * tmp = nil;
+    if (articleArray) {
+        tmp = [[NSMutableArray alloc] initWithArray:articleArray];
+    } else {
+        tmp = [[NSMutableArray alloc] init];
+    }
+    
+    for (YelpListing * yelp in tmp) {
+        if ([self.yelpObject.name isEqualToString:yelp.name]) {
+            [self.checkinButton setTitle:@"You have checked in!" forState:UIControlStateNormal]; // To set the title
+            [self.checkinButton setEnabled:NO];
+        }
+    }
 
 }
 
@@ -77,17 +132,37 @@
 }
 
 - (IBAction)WriteNote:(id)sender {
-    //[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //WriteNoteViewController* singleNote = [storyboard instantiateViewControllerWithIdentifier:@"NoteDetailView"];
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WriteNoteViewController* writeNoteController = [storyboard instantiateViewControllerWithIdentifier:@"WriteNote"];
     
-    //YelpListing *ym=[YelpDataArray objectAtIndex:indexPath.row];
-    //webViewController.mobileUrl=ym.mobile_url;
-    //NSLog(@"123=%@",ym.mobile_url);
-    //webview.type=@"Rest_Details";
-    //[self.navigationController pushViewController:singleNote animated:YES];
-    //[self presentViewController:singleNote animated: YES completion:nil];
+    YelpListing *ym= self.yelpObject;
+    writeNoteController.yelpObject=ym;
+
+    [self.navigationController pushViewController:writeNoteController animated:YES];
     
 }
+
+- (IBAction)CheckIn:(id)sender {
+    NSError * err = nil;
+    NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
+    NSURL *file = [docs URLByAppendingPathComponent:@"checkin.plist"];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:file];
+    NSArray * articleArray = (NSArray *) [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSMutableArray * tmp = nil;
+    if (articleArray) {
+        tmp = [[NSMutableArray alloc] initWithArray:articleArray];
+    } else {
+        tmp = [[NSMutableArray alloc] init];
+    }
+    
+    [tmp addObject:self.yelpObject];
+    NSData * checkin = [NSKeyedArchiver archivedDataWithRootObject:tmp];
+    [checkin writeToURL:file atomically:NO];
+    
+    [self.checkinButton setTitle:@"You have checked in!" forState:UIControlStateNormal]; // To set the title
+    [self.checkinButton setEnabled:NO];
+    
+}
+
 @end

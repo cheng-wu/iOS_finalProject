@@ -118,7 +118,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return YelpDataArray.count+1;
+    return YelpDataArray.count+2;
 }
 
 
@@ -226,7 +226,7 @@
         WebViewController* webViewController = [storyboard instantiateViewControllerWithIdentifier:@"webViewController"];
         
         YelpListing *ym=[YelpDataArray objectAtIndex:indexPath.row-2];
-        webViewController.mobileUrl=ym.mobile_url;
+        webViewController.yelpObject=ym;
         //webViewController.restname = ;
         //webViewController.resturl = ;
         //NSLog(@"123=%@",ym.mobile_url);
