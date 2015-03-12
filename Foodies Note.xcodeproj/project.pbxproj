@@ -42,6 +42,9 @@
 		841881121AA4101D007ABB34 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841881111AA4101D007ABB34 /* AsyncImageView.m */; };
 		841881151AA4102C007ABB34 /* YelpListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 841881141AA4102C007ABB34 /* YelpListing.m */; };
 		84571B491AB0DBB4004647C0 /* MeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84571B481AB0DBB4004647C0 /* MeTableViewController.m */; };
+		84571B4C1AB10A66004647C0 /* PersonalCheckInTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84571B4B1AB10A66004647C0 /* PersonalCheckInTableViewCell.m */; };
+		84571B4F1AB10A80004647C0 /* CheckInTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84571B4E1AB10A80004647C0 /* CheckInTableViewCell.m */; };
+		84571B521AB10A8F004647C0 /* MapCheckInTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84571B511AB10A8F004647C0 /* MapCheckInTableViewCell.m */; };
 		84952A761AACF898001B17CF /* NotesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84952A751AACF898001B17CF /* NotesTableViewController.m */; };
 		84952A7C1AAE68B7001B17CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84952A7B1AAE68B7001B17CF /* CoreLocation.framework */; };
 		84952A7E1AAE68BD001B17CF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84952A7D1AAE68BD001B17CF /* MapKit.framework */; };
@@ -133,6 +136,12 @@
 		841881141AA4102C007ABB34 /* YelpListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpListing.m; sourceTree = "<group>"; };
 		84571B471AB0DBB4004647C0 /* MeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeTableViewController.h; sourceTree = "<group>"; };
 		84571B481AB0DBB4004647C0 /* MeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeTableViewController.m; sourceTree = "<group>"; };
+		84571B4A1AB10A66004647C0 /* PersonalCheckInTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCheckInTableViewCell.h; sourceTree = "<group>"; };
+		84571B4B1AB10A66004647C0 /* PersonalCheckInTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCheckInTableViewCell.m; sourceTree = "<group>"; };
+		84571B4D1AB10A80004647C0 /* CheckInTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInTableViewCell.h; sourceTree = "<group>"; };
+		84571B4E1AB10A80004647C0 /* CheckInTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInTableViewCell.m; sourceTree = "<group>"; };
+		84571B501AB10A8F004647C0 /* MapCheckInTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCheckInTableViewCell.h; sourceTree = "<group>"; };
+		84571B511AB10A8F004647C0 /* MapCheckInTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCheckInTableViewCell.m; sourceTree = "<group>"; };
 		84952A741AACF898001B17CF /* NotesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesTableViewController.h; sourceTree = "<group>"; };
 		84952A751AACF898001B17CF /* NotesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesTableViewController.m; sourceTree = "<group>"; };
 		84952A7B1AAE68B7001B17CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -223,6 +232,12 @@
 				84952A801AAE6D31001B17CF /* MapTableViewCell.m */,
 				84571B471AB0DBB4004647C0 /* MeTableViewController.h */,
 				84571B481AB0DBB4004647C0 /* MeTableViewController.m */,
+				84571B4A1AB10A66004647C0 /* PersonalCheckInTableViewCell.h */,
+				84571B4B1AB10A66004647C0 /* PersonalCheckInTableViewCell.m */,
+				84571B4D1AB10A80004647C0 /* CheckInTableViewCell.h */,
+				84571B4E1AB10A80004647C0 /* CheckInTableViewCell.m */,
+				84571B501AB10A8F004647C0 /* MapCheckInTableViewCell.h */,
+				84571B511AB10A8F004647C0 /* MapCheckInTableViewCell.m */,
 			);
 			path = "Foodies Note";
 			sourceTree = "<group>";
@@ -449,6 +464,7 @@
 				3C7097731AABDD0F005222AD /* WriteNoteViewController.m in Sources */,
 				3CF60AEF1AAF93D2006888AF /* CPTextViewPlaceholder.m in Sources */,
 				8418810D1AA40A46007ABB34 /* OAToken.m in Sources */,
+				84571B521AB10A8F004647C0 /* MapCheckInTableViewCell.m in Sources */,
 				84952A761AACF898001B17CF /* NotesTableViewController.m in Sources */,
 				841881031AA40A46007ABB34 /* sha1.c in Sources */,
 				3C1C217D1AAD2D2E0047DB1B /* NoteTableViewCell.m in Sources */,
@@ -456,6 +472,7 @@
 				841881021AA40A46007ABB34 /* hmac.c in Sources */,
 				841880FF1AA40A46007ABB34 /* NSString+URLEncoding.m in Sources */,
 				8418810C1AA40A46007ABB34 /* OAServiceTicket.m in Sources */,
+				84571B4C1AB10A66004647C0 /* PersonalCheckInTableViewCell.m in Sources */,
 				84952A811AAE6D31001B17CF /* MapTableViewCell.m in Sources */,
 				841881041AA40A46007ABB34 /* OACall.m in Sources */,
 				8418808A1AA16856007ABB34 /* DiscoverTableViewCell.m in Sources */,
@@ -464,6 +481,7 @@
 				8418810A1AA40A46007ABB34 /* OAProblem.m in Sources */,
 				84571B491AB0DBB4004647C0 /* MeTableViewController.m in Sources */,
 				841881151AA4102C007ABB34 /* YelpListing.m in Sources */,
+				84571B4F1AB10A80004647C0 /* CheckInTableViewCell.m in Sources */,
 				8418810F1AA40A46007ABB34 /* YELPAPISample.m in Sources */,
 				841881061AA40A46007ABB34 /* OADataFetcher.m in Sources */,
 				3C6B5A181AAA50BC005C90AD /* WebViewController.m in Sources */,

@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface MeTableViewController : UITableViewController
 
 @property NSMutableArray *checkinItems;
+@property (strong,nonatomic) FBProfilePictureView *profilePicture;
+@property NSString *name;
+@property NSString *level;
+@property NSString *checkinNum;
 
 @end

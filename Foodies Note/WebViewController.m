@@ -89,6 +89,25 @@
     //self.review_countlabel.text=[NSString stringWithFormat:@"Reviewed by %@users",rmodel.review_count];
     self.reviewer.imageURL =[NSURL URLWithString:self.yelpObject.snippet_image_url];
     self.review.text = self.yelpObject.snippet_text;
+    
+    NSError * err = nil;
+    NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
+    NSURL *file = [docs URLByAppendingPathComponent:@"checkin.plist"];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:file];
+    NSArray * articleArray = (NSArray *) [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSMutableArray * tmp = nil;
+    if (articleArray) {
+        tmp = [[NSMutableArray alloc] initWithArray:articleArray];
+    } else {
+        tmp = [[NSMutableArray alloc] init];
+    }
+    
+    for (YelpListing * yelp in tmp) {
+        if ([self.yelpObject.name isEqualToString:yelp.name]) {
+            [self.checkinButton setTitle:@"You have checked in!" forState:UIControlStateNormal]; // To set the title
+            [self.checkinButton setEnabled:NO];
+        }
+    }
 
 }
 
@@ -140,6 +159,9 @@
     [tmp addObject:self.yelpObject];
     NSData * checkin = [NSKeyedArchiver archivedDataWithRootObject:tmp];
     [checkin writeToURL:file atomically:NO];
+    
+    [self.checkinButton setTitle:@"You have checked in!" forState:UIControlStateNormal]; // To set the title
+    [self.checkinButton setEnabled:NO];
     
 }
 

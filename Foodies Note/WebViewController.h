@@ -30,6 +30,7 @@
 @property (strong, nonatomic) NSString *longitude;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
+@property (weak, nonatomic) IBOutlet UIButton *checkinButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *restaurantName;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantAddress;

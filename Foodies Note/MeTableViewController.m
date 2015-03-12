@@ -8,8 +8,11 @@
 
 #import "MeTableViewController.h"
 #import "YelpListing.h"
+#import "PersonalCheckInTableViewCell.h"
+#import "CheckInTableViewCell.h"
+#import "MapCheckInTableViewCell.h"
 
-@interface MeTableViewController ()
+@interface MeTableViewController () <FBLoginViewDelegate>
 
 @end
 
@@ -23,13 +26,28 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
     
+}
+
+- (void)viewDidAppear:(BOOL)animated{
     NSError * err = nil;
     NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
     NSURL *file = [docs URLByAppendingPathComponent:@"checkin.plist"];
     NSData *data = [[NSData alloc] initWithContentsOfURL:file];
     self.checkinItems = (NSMutableArray *) [NSKeyedUnarchiver unarchiveObjectWithData:data];
     [self.tableView reloadData];
+    
+    FBLoginView *loginView = [[FBLoginView alloc] init];
+    loginView.delegate = self;
+    
+    self.checkinNum = [NSString stringWithFormat:@"You checked in %lu places!", (unsigned long)self.checkinItems.count];
+    
+    /*
+     assign level
+     */
+    
+    self.level = [NSString stringWithFormat:@"Level: %lu", (unsigned long)self.checkinItems.count];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,19 +66,52 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return self.checkinItems.count;
+    return self.checkinItems.count+2;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = (UITableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"CheckinCell" forIndexPath:indexPath];
-    YelpListing *object = self.checkinItems[indexPath.row];
+    NSInteger rowNo = indexPath.row;
+    if(rowNo==0){
+        static NSString *CellIdentifier = @"PersonalCheckInCell";
+        PersonalCheckInTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        //cell.profilePicture = self.profilePicture;
+        //cell.name.text = self.name;
+        cell.level.text = self.level;
+        cell.checkinNum.text = self.checkinNum;
+        NSLog(@"just a test2=%@",self.name);
+        return cell;
+        
+    }
+    if(rowNo==1){
+        static NSString *CellIdentifier = @"MapCheckinCell";
+        MapCheckInTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        //cell.profilePicture = self.profilePicture;
+        //cell.name.text = self.name;
+        NSLog(@"just a test2=%@",self.name);
+        cell.checkInDataArray = self.checkinItems;
+        return cell;
+        
+    }
     
-    cell.textLabel.text = object.name;
-    cell.detailTextLabel.text = object.name;
+    
+    static NSString *CellIdentifier = @"CheckInCell";
+    
+    
+    CheckInTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    YelpListing *object = self.checkinItems[indexPath.row-2];
+    
+    [cell setCellData:object];
     
     return cell;
 
+}
+
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+    self.profilePicture.profileID = user.objectID;
+    self.name = user.name;
+    NSLog(@"just a test");
 }
 
 
