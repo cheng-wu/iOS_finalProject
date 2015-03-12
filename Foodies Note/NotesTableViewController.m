@@ -31,7 +31,11 @@
     NSURL *file = [docs URLByAppendingPathComponent:@"notes.plist"];
     NSData *data = [[NSData alloc] initWithContentsOfURL:file];
     self.notes = (NSMutableArray *) [NSKeyedUnarchiver unarchiveObjectWithData:data];
+     
      */
+    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+    //self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {

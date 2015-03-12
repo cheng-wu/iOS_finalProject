@@ -7,11 +7,14 @@
 //
 
 #import "WriteNoteViewController.h"
+#import "AsyncImageView.h"
+#import "PhotoCollectionViewCell.h"
 
 
-@interface WriteNoteViewController ()
+@interface WriteNoteViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property BOOL isFullScreen;
+@property NSInteger photonumber;
 
 @end
 
@@ -29,6 +32,21 @@
     //self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
     
     //self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:nil action:nil];
+    //NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"photoCell" owner:self options:nil];
+    
+    // 如果路径不存在，return nil
+    
+    // 加载nib
+    //self.view = [arrayOfViews objectAtIndex:0];
+    
+    //[self.collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"photoCell"];
+    
+    self.view.userInteractionEnabled= YES;
+    self.photonumber = 0;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.imagepaths=[[NSMutableArray alloc]initWithCapacity:5];
+    //[self.collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"photoCell"];
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDate *now;
@@ -84,6 +102,13 @@
     else if(month == 12){
         self.month.text = [NSString stringWithFormat: @"DEC"];
     }
+    self.restname.text = self.yelpObject.name;
+    self.restimage.imageURL =[NSURL URLWithString:self.yelpObject.image_url];
+    //NSLog(@"1111=%@",self.yelpObject.address);
+    //NSLog(@"1111=%@",self.yelpObject.name);
+    self.restlocation.text = [self.yelpObject.display_address description];
+    
+    //self.restimage
     //self.month.text = note.month;
     //note.month = [NSString stringWithFormat: @"%ld", (long)month];
 
@@ -94,17 +119,24 @@
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 180.0-1, 375, 1)];
     line.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0];
     [self.view addSubview:line];
-    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 320.0-1, 375, 1)];
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 300.0-1, 375, 1)];
     line2.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0];
     [self.view addSubview:line2];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
+                                initWithTarget:self
+                              action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
+    self.image.autoresizesSubviews = NO;
+    [self.collectionView reloadData];
    
 }
+-(void) viewDidLayoutSubviews
+{
+
+}
+
 -(void) viewWillAppear:(BOOL)animated
 {
      //self.navigationItem.title =@"123";
@@ -237,6 +269,8 @@
     
     note.imagepath = self.imagepath;
     
+    note.imagepaths = self.imagepaths;
+    
     //note.title = ;
     
     [tmp addObject:note];
@@ -272,26 +306,29 @@
     NSDate *  senddate=[NSDate date];
     
    // NSLog(@"123=%@",currenttime);
-
+    self.photonumber = self.photonumber+1;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
     NSString *  currenttime=[dateFormatter stringFromDate:senddate];
-    NSString *imagename = [[NSString alloc] initWithFormat:@"%@.png",currenttime];
+    NSString *imagename = [[NSString alloc] initWithFormat:@"%@-%ld.png",currenttime,(long)self.photonumber];
     NSLog(@"imagename==%@",imagename);
+    
+    NSLog(@"imagepaths==%@",self.imagepaths);
     
     [self saveImage:image withName:imagename];
     
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imagename];
     self.imagepath = fullPath;
     //NSLog(@"fullpath========%@",fullPath);
-    
+    [self.imagepaths addObject:fullPath];
     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
     
     _isFullScreen = NO;
     [self.image setImage:savedImage];
     
     self.image.tag = 100;
+    [self.collectionView reloadData];
     
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -401,14 +438,82 @@
     
     sheet.tag = 255;
     
+    //self.photonumber = self.photonumber + 1;
     [sheet showInView:self.view];
     
-    
+    //[self.collectionView reloadData];
 
 }
 
 -(void)dismissKeyboard {
     [self.Text resignFirstResponder];
+}
+
+
+
+#pragma mark - CollectionView DataSource
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.photonumber+1;
+}
+
+-(UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSInteger rowNo = indexPath.row;
+    NSLog(@"photonumber=%ld",(long)self.photonumber);
+    
+    if (rowNo<self.photonumber) {
+        //static NSString *cellId = @"photoCell";
+        PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
+        
+        
+        NSString *imageToLoad = [self.imagepaths objectAtIndex:rowNo];
+        //加载图片
+        //cell.singlephoto.image = [UIImage imageNamed:imageToLoad];
+        NSLog(@"imagetoload=%@",imageToLoad);
+        UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:imageToLoad];
+        
+        //_isFullScreen = NO;
+        [cell.singlephoto setImage:savedImage];
+        
+        cell.backgroundColor = [UIColor whiteColor];
+        
+        return cell;
+    }
+    else
+    {
+        PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor blackColor];
+        
+        NSLog(@"2222222");
+        
+        return cell;
+    
+    }
+    
+    
+    
+    //cell.singlephoto = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"add.png"]];
+    //NSString *imageToLoad = [NSString stringWithFormat:@"%ld.png", (long)indexPath.row];
+    //NSString *imageToLoad = @"add.png";
+    //加载图片
+    //cell.singlephoto.image = [UIImage imageNamed:imageToLoad];
+    
+
+    
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(120, 120);
+}
+//定义每个UICollectionView 的 margin
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(5, 5, 5, 5);
 }
 
 

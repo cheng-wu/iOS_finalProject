@@ -21,5 +21,6 @@
 @property (strong, nonatomic) NSString * hour;
 @property (strong, nonatomic) NSString * minute;
 @property (strong, nonatomic) NSString * imagepath;
+@property (strong, nonatomic) NSMutableArray *imagepaths;
 
 @end

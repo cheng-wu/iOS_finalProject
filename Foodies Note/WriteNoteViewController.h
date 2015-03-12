@@ -16,8 +16,9 @@
 
 
 - (IBAction)saveNote:(id)sender;
-@property (weak, nonatomic) IBOutlet UIImageView *image;
+//@property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (strong, nonatomic) NSString * imagepath;
+@property (weak, nonatomic) IBOutlet UILabel *restlocation;
 @property (weak, nonatomic) IBOutlet CPTextViewPlaceholder *Text;
 @property (weak, nonatomic) IBOutlet UIImageView *restimage;
 @property (weak, nonatomic) IBOutlet UILabel *restname;
@@ -26,6 +27,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *day;
 
 @property (strong, nonatomic) YelpListing *yelpObject;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property(strong, nonatomic) NSMutableArray* imagepaths;
+
 
 @property NotesTableViewController *noteview;
 
