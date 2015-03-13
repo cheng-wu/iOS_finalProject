@@ -34,6 +34,10 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
     // ** Don't forget to add NSLocationWhenInUseUsageDescription in MyApp-Info.plist and give it a string
     
     self.locationManager = [[CLLocationManager alloc] init];
@@ -443,5 +447,9 @@
     } else {
         NSLog(@"Wrong location status");
     }
+}
+
+-(void)dismissKeyboard {
+    [self.searchTerm resignFirstResponder];
 }
 @end

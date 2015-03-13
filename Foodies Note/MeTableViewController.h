@@ -13,8 +13,6 @@
 
 @property NSMutableArray *checkinItems;
 @property (strong,nonatomic) FBProfilePictureView *profilePicture;
-@property NSString *name;
 @property NSString *level;
 @property NSString *checkinNum;
-
 @end

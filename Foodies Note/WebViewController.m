@@ -81,7 +81,9 @@
     [self.mapView setCenterCoordinate:region.center animated:YES];
     
     self.restaurantName.text=self.yelpObject.name;
-    self.restaurantAddress.text=[self.yelpObject.display_address description];
+    NSString *add = [self.yelpObject.display_address description];
+    NSString *newAdd = [add substringFromIndex:2];
+    self.restaurantAddress.text=newAdd;
     if(self.yelpObject.image_url)
         self.rest_ImageView.imageURL=[NSURL URLWithString:self.yelpObject.image_url];
     self.rating_ImageView.imageURL=[NSURL URLWithString:self.yelpObject.rating_img_url_large];

@@ -59,13 +59,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+//#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+//#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return self.checkinItems.count+2;
 }
@@ -77,11 +77,22 @@
         static NSString *CellIdentifier = @"PersonalCheckInCell";
         PersonalCheckInTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        //cell.profilePicture = self.profilePicture;
-        //cell.name.text = self.name;
+        
+        if (FBSession.activeSession.isOpen) {
+            [[FBRequest requestForMe] startWithCompletionHandler:
+             ^(FBRequestConnection *connection,
+               NSDictionary<FBGraphUser> *user,
+               NSError *error) {
+                 if (!error) {
+                     cell.name.text = user.name;
+                     cell.FBPicture.profileID = user.objectID;
+                     NSLog(@"justtry=%@",user.name);
+                 }
+             }];
+        }
+        
         cell.level.text = self.level;
         cell.checkinNum.text = self.checkinNum;
-        NSLog(@"just a test2=%@",self.name);
         FBLoginView *loginView = [[FBLoginView alloc] init];
         loginView.delegate = cell;
         return cell;
@@ -94,7 +105,42 @@
         //cell.profilePicture = self.profilePicture;
         //cell.name.text = self.name;
         NSLog(@"HEIWEGOU");
-        [cell refreshMap];
+        //[cell refreshMap];
+        NSError * err = nil;
+        NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
+        NSURL *file = [docs URLByAppendingPathComponent:@"checkin.plist"];
+        NSData *data = [[NSData alloc] initWithContentsOfURL:file];
+        NSArray * articleArray = (NSArray *) [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        NSMutableArray * tmp = nil;
+        if (articleArray) {
+            tmp = [[NSMutableArray alloc] initWithArray:articleArray];
+        } else {
+            tmp = [[NSMutableArray alloc] init];
+        }
+        
+        NSLog(@"countnum=%ld",tmp.count);
+        
+        for (YelpListing * yelp in tmp) {
+            NSLog(@"not here??");
+            NSString *latitude = [yelp.coordinate valueForKey:@"latitude"];
+            NSString *longitude = [yelp.coordinate valueForKey:@"longitude"];
+            
+            NSLog(@"location=%@",latitude);
+            
+            MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+            annotation.coordinate = CLLocationCoordinate2DMake([latitude floatValue], [longitude floatValue]);
+            annotation.title = yelp.name;
+            annotation.subtitle = yelp.display_phone;
+            [cell.mapView addAnnotation:annotation];
+            
+            MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+            region.center.latitude = [latitude floatValue];
+            region.center.longitude = [longitude floatValue];
+            region.span.longitudeDelta = 1.8f;
+            region.span.longitudeDelta = 1.8f;
+            [cell.mapView setRegion:region animated:YES];
+            [cell.mapView setCenterCoordinate:region.center animated:YES];
+        }
         return cell;
         
     }
@@ -115,8 +161,6 @@
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     self.profilePicture.profileID = user.objectID;
-    self.name = user.name;
-    NSLog(@"just a test");
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
