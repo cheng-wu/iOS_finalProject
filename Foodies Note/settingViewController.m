@@ -7,134 +7,98 @@
 //
 
 #import "settingViewController.h"
+#import "HowtouseViewController.h"
 
-@interface settingViewController ()<UITableViewDataSource,UITableViewDelegate>{
-    
-    UITableView *DataTable;
-    
-    NSMutableArray *dataArray1;
-    
-    NSMutableArray *dataArray2;
-    
-    NSMutableArray *titleArray;
-    
-}
+@interface settingViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
 @implementation settingViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
-    
-    DataTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 375, 600)];
-    
-    [DataTable setDelegate:self];
-    
-    [DataTable setDataSource:self];
-    
-    [self.view addSubview:DataTable];
-    
-    
-    
-    dataArray1 = [[NSMutableArray alloc] initWithObjects:@"中国", @"美国", @"英国", nil];
-    dataArray2 = [[NSMutableArray alloc] initWithObjects:@"黄种人", @"黑种人", @"白种人", nil];
-    titleArray = [[NSMutableArray alloc] initWithObjects:@"国家", @"种族", nil];    // Do any additional setup after loading the view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)viewDidLoad
 {
-    
-    // Return YES for supported orientations
-    
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    
+    [super viewDidLoad];
+    self.title = @"Settings";
+    // Do any additional setup after loading the view.
+    [self drawTableView];
 }
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    
-    switch (section) {
-        case 0:
-            return [titleArray objectAtIndex:section];
-        case 1:
-            return [titleArray objectAtIndex:section];
-        default:
-            return @"Unknown";
-            
-    }  
-    
+-(void)drawTableView{
+    UITableView *tview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 375, self.view.frame.size.height) style:UITableViewStyleGrouped];
+    [tview setDelegate:self];
+    [tview setDataSource:self];
+    [self.view addSubview:tview];
 }
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return [titleArray count];//返回标题数组中元素的个数来确定分区的个数
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
 }
-
-//指定每个分区中有多少行，默认为1
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 1||section == 2) {
+        return 2;
+    }
+    return 1;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 4;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    static NSString *CellIdentifier = @"settingCell";
     
-    switch (section) {
-            
-        case 0:
-            return  [dataArray1 count];
-            break;
-        case 1:
-            return  [dataArray2 count];
-            break;
-        default:
-            return 0;
-            break;  
-            
-    }  
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        switch (section) {
+            case 0:
+                cell.textLabel.text =  @"My Account";
+                break;
+            case 1:
+                if(row == 0)
+                {
+                    cell.textLabel.text =  @"General";
+                }else{
+                    cell.textLabel.text =  @"Privacy";
+                }
+                break;
+            case 2:
+                if(row == 0)
+                {
+                    cell.textLabel.text =  @"About";
+                }else{
+                    cell.textLabel.text =  @"Instructions for Use";
+                }
+                break;
+            case 3:
+                cell.textLabel.text =  @"Log out";
+                break;
+            default:
+                break;
+        }
+    }
+    return cell;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = (UITableViewCell*)[tableView  dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc]initWithFrame:CGRectZero reuseIdentifier:CellIdentifier];
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    if(section==2&&row==1){
+        //[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        HowtouseViewController* howtouseview = [storyboard instantiateViewControllerWithIdentifier:@"howtouseview"];
+        
+        
+        [self.navigationController pushViewController:howtouseview animated:YES];
     }
     
-    switch (indexPath.section) {
-        case 0:
-            [[cell textLabel]  setText:[dataArray1 objectAtIndex:indexPath.row]];
-            break;
-        case 1:
-            [[cell textLabel]  setText:[dataArray2 objectAtIndex:indexPath.row]];
-            break;
-            default:
-            [[cell textLabel]  setText:@"Unknown"];
-    }  
-    
-    return cell;
-    
-}  
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

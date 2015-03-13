@@ -109,7 +109,11 @@
     //NSLog(@"1234566789=%@",self.yelpObject.image_url);
     //NSLog(@"1111=%@",self.yelpObject.address);
     //NSLog(@"1111=%@",self.yelpObject.name);
-    self.restlocation.text = [self.yelpObject.display_address description];
+    
+    NSString *add = [self.yelpObject.display_address description];
+    NSString *newAdd = [add substringFromIndex:2];
+    
+    self.restlocation.text = newAdd;
     
     //self.restimage
     //self.month.text = note.month;

@@ -25,6 +25,7 @@
     // Configure the view for the selected state
 }
 
+/*
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     self.FBPicture.profileID = user.objectID;
@@ -32,4 +33,5 @@
     NSLog(@"just a test!!!!!!");
 }
 
+ */
 @end

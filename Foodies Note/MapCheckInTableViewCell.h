@@ -15,6 +15,5 @@
 
 @property NSMutableArray *checkInDataArray;
 
-- (void) refreshMap;
 
 @end

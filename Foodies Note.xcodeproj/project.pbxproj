@@ -14,6 +14,7 @@
 		3CB1CC7E1AB179BE0045715F /* settingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1CC7D1AB179BE0045715F /* settingViewController.m */; };
 		3CB624B61AB2839400AEC32B /* NoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB624B51AB2839400AEC32B /* NoteDetailViewController.m */; };
 		3CB624B91AB2882F00AEC32B /* SelfPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB624B81AB2882F00AEC32B /* SelfPhotoCollectionViewCell.m */; };
+		3CC7C5B91AB3A5510093AD3C /* HowtouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC7C5B81AB3A5510093AD3C /* HowtouseViewController.m */; };
 		3CF60AEF1AAF93D2006888AF /* CPTextViewPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF60AEE1AAF93D2006888AF /* CPTextViewPlaceholder.m */; };
 		841880591AA10E99007ABB34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 841880581AA10E99007ABB34 /* main.m */; };
 		8418805C1AA10E99007ABB34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8418805B1AA10E99007ABB34 /* AppDelegate.m */; };
@@ -83,6 +84,8 @@
 		3CB624B51AB2839400AEC32B /* NoteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDetailViewController.m; sourceTree = "<group>"; };
 		3CB624B71AB2882F00AEC32B /* SelfPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfPhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		3CB624B81AB2882F00AEC32B /* SelfPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		3CC7C5B71AB3A5510093AD3C /* HowtouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowtouseViewController.h; sourceTree = "<group>"; };
+		3CC7C5B81AB3A5510093AD3C /* HowtouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowtouseViewController.m; sourceTree = "<group>"; };
 		3CF60AED1AAF93D2006888AF /* CPTextViewPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTextViewPlaceholder.h; sourceTree = "<group>"; };
 		3CF60AEE1AAF93D2006888AF /* CPTextViewPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTextViewPlaceholder.m; sourceTree = "<group>"; };
 		841880531AA10E99007ABB34 /* Foodies Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Foodies Note.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,10 +229,12 @@
 				3CB624B51AB2839400AEC32B /* NoteDetailViewController.m */,
 				3CB1CC7C1AB179BE0045715F /* settingViewController.h */,
 				3CB1CC7D1AB179BE0045715F /* settingViewController.m */,
+				3CC7C5B71AB3A5510093AD3C /* HowtouseViewController.h */,
+				3CC7C5B81AB3A5510093AD3C /* HowtouseViewController.m */,
 				3CB1CC791AB141D70045715F /* PhotoCollectionViewCell.h */,
+				3CB1CC7A1AB141D70045715F /* PhotoCollectionViewCell.m */,
 				3CB624B71AB2882F00AEC32B /* SelfPhotoCollectionViewCell.h */,
 				3CB624B81AB2882F00AEC32B /* SelfPhotoCollectionViewCell.m */,
-				3CB1CC7A1AB141D70045715F /* PhotoCollectionViewCell.m */,
 				3CF60AED1AAF93D2006888AF /* CPTextViewPlaceholder.h */,
 				3CF60AEE1AAF93D2006888AF /* CPTextViewPlaceholder.m */,
 				3C1C217B1AAD2D2E0047DB1B /* NoteTableViewCell.h */,
@@ -509,6 +514,7 @@
 				841881061AA40A46007ABB34 /* OADataFetcher.m in Sources */,
 				3C6B5A181AAA50BC005C90AD /* WebViewController.m in Sources */,
 				841880FE1AA40A46007ABB34 /* NSMutableURLRequest+Parameters.m in Sources */,
+				3CC7C5B91AB3A5510093AD3C /* HowtouseViewController.m in Sources */,
 				841881071AA40A46007ABB34 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				8418810E1AA40A46007ABB34 /* OATokenManager.m in Sources */,
 				8418805C1AA10E99007ABB34 /* AppDelegate.m in Sources */,
