@@ -25,7 +25,9 @@
 -(void)setCellData:(YelpListing*)rmodel
 {
     self.restaurantName.text=rmodel.name;
-    self.restaurantAddress.text=[rmodel.display_address description];
+    NSString *add = [rmodel.display_address description];
+    NSString *newAdd = [add substringFromIndex:2];
+    self.restaurantAddress.text=newAdd;
     if(rmodel.image_url)
         self.rest_ImageView.imageURL=[NSURL URLWithString:rmodel.image_url];
     self.rating_ImageView.imageURL=[NSURL URLWithString:rmodel.rating_img_url_large];
