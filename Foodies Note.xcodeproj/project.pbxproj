@@ -12,6 +12,8 @@
 		3C7097731AABDD0F005222AD /* WriteNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7097721AABDD0F005222AD /* WriteNoteViewController.m */; };
 		3CB1CC7B1AB141D70045715F /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1CC7A1AB141D70045715F /* PhotoCollectionViewCell.m */; };
 		3CB1CC7E1AB179BE0045715F /* settingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1CC7D1AB179BE0045715F /* settingViewController.m */; };
+		3CB624B61AB2839400AEC32B /* NoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB624B51AB2839400AEC32B /* NoteDetailViewController.m */; };
+		3CB624B91AB2882F00AEC32B /* SelfPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB624B81AB2882F00AEC32B /* SelfPhotoCollectionViewCell.m */; };
 		3CF60AEF1AAF93D2006888AF /* CPTextViewPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF60AEE1AAF93D2006888AF /* CPTextViewPlaceholder.m */; };
 		841880591AA10E99007ABB34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 841880581AA10E99007ABB34 /* main.m */; };
 		8418805C1AA10E99007ABB34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8418805B1AA10E99007ABB34 /* AppDelegate.m */; };
@@ -77,6 +79,10 @@
 		3CB1CC7A1AB141D70045715F /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		3CB1CC7C1AB179BE0045715F /* settingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingViewController.h; sourceTree = "<group>"; };
 		3CB1CC7D1AB179BE0045715F /* settingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = settingViewController.m; sourceTree = "<group>"; };
+		3CB624B41AB2839400AEC32B /* NoteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDetailViewController.h; sourceTree = "<group>"; };
+		3CB624B51AB2839400AEC32B /* NoteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDetailViewController.m; sourceTree = "<group>"; };
+		3CB624B71AB2882F00AEC32B /* SelfPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		3CB624B81AB2882F00AEC32B /* SelfPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		3CF60AED1AAF93D2006888AF /* CPTextViewPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTextViewPlaceholder.h; sourceTree = "<group>"; };
 		3CF60AEE1AAF93D2006888AF /* CPTextViewPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTextViewPlaceholder.m; sourceTree = "<group>"; };
 		841880531AA10E99007ABB34 /* Foodies Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Foodies Note.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,9 +222,13 @@
 				841880561AA10E99007ABB34 /* Supporting Files */,
 				841880821AA11FE8007ABB34 /* HeaderTableViewCell.h */,
 				841880831AA11FE8007ABB34 /* HeaderTableViewCell.m */,
+				3CB624B41AB2839400AEC32B /* NoteDetailViewController.h */,
+				3CB624B51AB2839400AEC32B /* NoteDetailViewController.m */,
 				3CB1CC7C1AB179BE0045715F /* settingViewController.h */,
 				3CB1CC7D1AB179BE0045715F /* settingViewController.m */,
 				3CB1CC791AB141D70045715F /* PhotoCollectionViewCell.h */,
+				3CB624B71AB2882F00AEC32B /* SelfPhotoCollectionViewCell.h */,
+				3CB624B81AB2882F00AEC32B /* SelfPhotoCollectionViewCell.m */,
 				3CB1CC7A1AB141D70045715F /* PhotoCollectionViewCell.m */,
 				3CF60AED1AAF93D2006888AF /* CPTextViewPlaceholder.h */,
 				3CF60AEE1AAF93D2006888AF /* CPTextViewPlaceholder.m */,
@@ -469,6 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84A400091AACF2EE008D72C3 /* Note.m in Sources */,
+				3CB624B61AB2839400AEC32B /* NoteDetailViewController.m in Sources */,
 				84A1EA481AABA09E006DDF56 /* LoginViewController.m in Sources */,
 				841881081AA40A46007ABB34 /* OAMutableURLRequest.m in Sources */,
 				3C7097731AABDD0F005222AD /* WriteNoteViewController.m in Sources */,
@@ -506,6 +517,7 @@
 				841880591AA10E99007ABB34 /* main.m in Sources */,
 				841880841AA11FE8007ABB34 /* HeaderTableViewCell.m in Sources */,
 				841881051AA40A46007ABB34 /* OAConsumer.m in Sources */,
+				3CB624B91AB2882F00AEC32B /* SelfPhotoCollectionViewCell.m in Sources */,
 				841880FD1AA40A46007ABB34 /* NSURLRequest+OAuth.m in Sources */,
 				841881001AA40A46007ABB34 /* NSURL+Base.m in Sources */,
 			);

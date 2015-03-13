@@ -9,6 +9,8 @@
 #import "WriteNoteViewController.h"
 #import "AsyncImageView.h"
 #import "PhotoCollectionViewCell.h"
+#import "NotesTableViewController.h"
+#import "DiscoverTableViewController.h"
 
 
 @interface WriteNoteViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -104,6 +106,7 @@
     }
     self.restname.text = self.yelpObject.name;
     self.restimage.imageURL =[NSURL URLWithString:self.yelpObject.image_url];
+    //NSLog(@"1234566789=%@",self.yelpObject.image_url);
     //NSLog(@"1111=%@",self.yelpObject.address);
     //NSLog(@"1111=%@",self.yelpObject.name);
     self.restlocation.text = [self.yelpObject.display_address description];
@@ -201,40 +204,40 @@
     note.content = self.Text.text;
     note.year = [NSString stringWithFormat: @"%ld", (long)year];
     if (month == 1) {
-        note.month = [NSString stringWithFormat: @"JAN ,"];
+        note.month = [NSString stringWithFormat: @"JAN  "];
     }
     else if(month == 2){
-        note.month = [NSString stringWithFormat: @"FEB ,"];
+        note.month = [NSString stringWithFormat: @"FEB  "];
     }
     else if(month == 3){
-        note.month = [NSString stringWithFormat: @"MAR ,"];
+        note.month = [NSString stringWithFormat: @"MAR  "];
     }
     else if(month == 4){
-        note.month = [NSString stringWithFormat: @"APR ,"];
+        note.month = [NSString stringWithFormat: @"APR  "];
     }
     else if(month == 5){
-        note.month = [NSString stringWithFormat: @"MAY ,"];
+        note.month = [NSString stringWithFormat: @"MAY  "];
     }
     else if(month == 6){
-        note.month = [NSString stringWithFormat: @"JUN ,"];
+        note.month = [NSString stringWithFormat: @"JUN  "];
     }
     else if(month == 7){
-        note.month = [NSString stringWithFormat: @"JUL ,"];
+        note.month = [NSString stringWithFormat: @"JUL  "];
     }
     else if(month == 8){
-        note.month = [NSString stringWithFormat: @"AUG ,"];
+        note.month = [NSString stringWithFormat: @"AUG  "];
     }
     else if(month == 9){
-        note.month = [NSString stringWithFormat: @"SEP ,"];
+        note.month = [NSString stringWithFormat: @"SEP  "];
     }
     else if(month == 10){
-        note.month = [NSString stringWithFormat: @"OCT ,"];
+        note.month = [NSString stringWithFormat: @"OCT  "];
     }
     else if(month == 11){
-        note.month = [NSString stringWithFormat: @"NOV ,"];
+        note.month = [NSString stringWithFormat: @"NOV  "];
     }
     else if(month == 12){
-        note.month = [NSString stringWithFormat: @"DEC ,"];
+        note.month = [NSString stringWithFormat: @"DEC  "];
     }
     //self.month.text = note.month;
     //note.month = [NSString stringWithFormat: @"%ld", (long)month];
@@ -271,6 +274,16 @@
     
     note.imagepaths = self.imagepaths;
     
+    note.title = self.restname.text;
+    
+    note.location = self.restlocation.text;
+    
+    note.restimageurl = self.yelpObject.image_url;
+    
+    
+    
+    NSLog(@"123456789=%@",self.restimage.imageURL);
+    
     //note.title = ;
     
     [tmp addObject:note];
@@ -280,6 +293,10 @@
     
     //[self.navigationController popToRootViewControllerAnimated:YES];
     //[self.view addSubview:self.noteview.view];
+    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITabBarController* controller = [storyboard instantiateViewControllerWithIdentifier:@"rootController"];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 
@@ -289,12 +306,22 @@
     NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
     // 获取沙盒目录
     
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
+    //NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentDirectory = [paths objectAtIndex:0];
     
+    //在上面的基础上，获得一个完整的文件路径和名字：
+    
+    NSString * file = [documentDirectory stringByAppendingPathComponent:imageName];
+    
+    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //NSString *docPath = [paths objectAtIndex:0];
+    //NSString *myFile = [docPath stringByAppendingPathComponent:@"Documents"];
     
     // 将图片写入文件
     
-    [imageData writeToFile:fullPath atomically:NO];
+    //[imageData writeToFile:fullPath atomically:YES];
+    [imageData writeToFile:file atomically:YES];
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -318,7 +345,16 @@
     
     [self saveImage:image withName:imagename];
     
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imagename];
+    //NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imagename];
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentDirectory = [paths objectAtIndex:0];
+    
+    //在上面的基础上，获得一个完整的文件路径和名字：
+    
+    NSString * fullPath = [documentDirectory stringByAppendingPathComponent:imagename];
+    
+    //NSData *data=[NSData dataWithContentsOfFile:fullPath options:0 error:NULL];
+    
     self.imagepath = fullPath;
     //NSLog(@"fullpath========%@",fullPath);
     [self.imagepaths addObject:fullPath];
@@ -429,11 +465,11 @@
     // 判断是否支持相机
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        sheet  = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从相册选择", nil];
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"Select" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:@"Take Photo",@"Choose from Photos", nil];
     }
     else {
         
-        sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"从相册选择", nil];
+        sheet = [[UIActionSheet alloc] initWithTitle:@"Select" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:@"Choose from Photos", nil];
     }
     
     sheet.tag = 255;

@@ -11,6 +11,7 @@
 #import "PersonalCheckInTableViewCell.h"
 #import "CheckInTableViewCell.h"
 #import "MapCheckInTableViewCell.h"
+#import "WebViewController.h"
 
 @interface MeTableViewController () <FBLoginViewDelegate>
 
@@ -75,6 +76,7 @@
     if(rowNo==0){
         static NSString *CellIdentifier = @"PersonalCheckInCell";
         PersonalCheckInTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         //cell.profilePicture = self.profilePicture;
         //cell.name.text = self.name;
         cell.level.text = self.level;
@@ -88,6 +90,7 @@
     if(rowNo==1){
         static NSString *CellIdentifier = @"MapCheckinCell";
         MapCheckInTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         //cell.profilePicture = self.profilePicture;
         //cell.name.text = self.name;
         NSLog(@"HEIWEGOU");
@@ -114,6 +117,40 @@
     self.profilePicture.profileID = user.objectID;
     self.name = user.name;
     NSLog(@"just a test");
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    self.hidesBottomBarWhenPushed = YES;
+    //    MenuViewController *menuVC = [[MenuViewController alloc] init];
+    //    menuVC.shopId = [[_shopData objectAtIndex:[indexPath row]] objectForKey:@"id"];
+    //    [self.navigationController pushViewController:menuVC animated:YES];
+    //    self.hidesBottomBarWhenPushed = NO;
+    if(indexPath.row != 1 ||indexPath.row != 0){
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        WebViewController* webViewController = [storyboard instantiateViewControllerWithIdentifier:@"webViewController"];
+        
+        YelpListing *ym=[self.checkinItems objectAtIndex:indexPath.row-2];
+        webViewController.yelpObject=ym;
+        //webViewController.restname = ;
+        //webViewController.resturl = ;
+        //NSLog(@"123=%@",ym.mobile_url);
+        //webview.type=@"Rest_Details";
+        [self.navigationController pushViewController:webViewController animated:YES];
+    }
+    
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // rows in section 0 should not be selectable
+    
+    // first 3 rows in any section should not be selectable
+    if ( indexPath.row <= 1 ) return nil;
+    
+    // By default, allow row to be selected
+    return indexPath;
 }
 
 

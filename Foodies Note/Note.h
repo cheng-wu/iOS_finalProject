@@ -12,6 +12,9 @@
 
 @property (strong, nonatomic) NSURL *link;
 @property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *location;
+@property (strong, nonatomic) NSString *restimageurl;
+
 @property (strong, nonatomic) NSString *content;
 //@property (strong, nonatomic) NSDate * date;
 @property (strong, nonatomic) NSString * year;

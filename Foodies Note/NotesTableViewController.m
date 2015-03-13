@@ -8,6 +8,8 @@
 
 #import "NotesTableViewController.h"
 #import "NoteTableViewCell.h"
+#import "NoteDetailViewController.h"
+#import "AsyncImageView.h"
 
 @interface NotesTableViewController ()
 
@@ -55,13 +57,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     return self.notes.count;
 }
@@ -85,11 +87,45 @@
     if (object.imagepath!=nil) {
         cell.image.image = savedImage;
     }
-    
+    else
+    {
+        cell.image.imageURL = [NSURL URLWithString:object.restimageurl];
+    }
     
     // Configure the cell...
     
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    self.hidesBottomBarWhenPushed = YES;
+    //    MenuViewController *menuVC = [[MenuViewController alloc] init];
+    //    menuVC.shopId = [[_shopData objectAtIndex:[indexPath row]] objectForKey:@"id"];
+    //    [self.navigationController pushViewController:menuVC animated:YES];
+    //    self.hidesBottomBarWhenPushed = NO;
+    if(indexPath.row != 1){
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        NoteDetailViewController* detailview = [storyboard instantiateViewControllerWithIdentifier:@"notedetailview"];
+        
+        
+        Note *object = self.notes[self.notes.count-indexPath.row-1];
+        detailview.notedetail = object;
+        NSLog(@"55555555555=%@",detailview.notedetail.imagepath);
+        NSLog(@"66666666666=%@",detailview.notedetail.title);
+        NSLog(@"77777777777=%@",detailview.notedetail.imagepaths);
+        //YelpListing *ym=[YelpDataArray objectAtIndex:indexPath.row-2];
+        //webViewController.yelpObject=ym;
+        //webViewController.restname = ;
+        //webViewController.resturl = ;
+        //NSLog(@"123=%@",ym.mobile_url);
+        //webview.type=@"Rest_Details";
+        [self.navigationController pushViewController:detailview animated:YES];
+    }
+    
 }
 
 
@@ -137,4 +173,18 @@
 }
 */
 
+- (IBAction)edit:(id)sender {
+    if ([self.tableView isEditing]) {
+        // If the tableView is already in edit mode, turn it off. Also change the title of the button to reflect the intended verb (‘Edit’, in this case).
+        [self.tableView setEditing:NO animated:YES];
+        
+        [self.staticedit setTitle:@"Edit"];
+        
+    }else {
+        // Turn on edit mode
+        [self.tableView setEditing:YES animated:YES];
+        
+        [self.staticedit setTitle:@"Done"];
+    }
+}
 @end

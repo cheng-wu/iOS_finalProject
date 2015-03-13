@@ -21,6 +21,9 @@
     self.date = [decoder decodeObjectForKey:@"date"];
     self.week = [decoder decodeObjectForKey:@"week"];
     self.imagepath = [decoder decodeObjectForKey:@"imagepath"];
+    self.imagepaths = [decoder decodeObjectForKey:@"imagepaths"];
+    self.location = [decoder decodeObjectForKey:@"location"];
+    self.restimageurl = [decoder decodeObjectForKey:@"restimageurl"];
     
     return self;
 }
@@ -34,6 +37,9 @@
     [encoder encodeObject:self.month forKey:@"month"];
     [encoder encodeObject:self.week forKey:@"week"];
     [encoder encodeObject:self.imagepath forKey:@"imagepath"];
+    [encoder encodeObject:self.imagepaths forKey:@"imagepaths"];
+    [encoder encodeObject:self.location forKey:@"location"];
+    [encoder encodeObject:self.restimageurl forKey:@"restimageurl"];
 }
 
 @end
