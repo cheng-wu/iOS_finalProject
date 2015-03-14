@@ -13,7 +13,7 @@
 
 @property NSMutableArray *notes;
 
-- (IBAction)edit:(id)sender;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *staticedit;
+- (void) edit;
+@property (strong, nonatomic) UIBarButtonItem *staticedit;
 
 @end

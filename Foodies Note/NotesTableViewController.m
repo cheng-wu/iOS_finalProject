@@ -38,6 +38,11 @@
     self.navigationController.navigationBar.barTintColor = [UIColor redColor];
     //self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    self.staticedit = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
+                                                       style:UIBarButtonItemStyleDone
+                                                      target:self action:@selector(edit)];
+    self.navigationItem.leftBarButtonItem = self.staticedit;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -173,18 +178,40 @@
 }
 */
 
-- (IBAction)edit:(id)sender {
+- (void)edit {
     if ([self.tableView isEditing]) {
         // If the tableView is already in edit mode, turn it off. Also change the title of the button to reflect the intended verb (‘Edit’, in this case).
         [self.tableView setEditing:NO animated:YES];
-        
         [self.staticedit setTitle:@"Edit"];
+        
         
     }else {
         // Turn on edit mode
         [self.tableView setEditing:YES animated:YES];
         
         [self.staticedit setTitle:@"Done"];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //delete mode
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        //delete
+        [self.notes removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        //update disc
+        NSError * err = nil;
+        NSURL *docs =[[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
+        NSURL *file = [docs URLByAppendingPathComponent:@"notes.plist"];
+        NSData * note = [NSKeyedArchiver archivedDataWithRootObject:self.notes];
+        [note writeToURL:file atomically:NO];
+        
+        //DetailViewController *controller = [[DetailViewController alloc]init];
+        
+        
     }
 }
 @end
